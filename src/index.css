@@ -1,10 +1,16 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-mustard-yellow: #d99b16;
   --color-powder-blue: #81c5e4;
   --color-cream-background: #fdfbf7;
 
-  --font-display: "Playfair Display", serif;
-  --font-body: "Lato", "Montserrat", sans-serif;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Lato', 'Montserrat', sans-serif;
+}
+
+.allison-regular {
+  font-family: 'Allison', cursive;
+  font-weight: 400;
+  font-style: normal;
 }
