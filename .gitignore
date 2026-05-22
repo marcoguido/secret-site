@@ -16,7 +16,6 @@ coverage
 
 # Editor directories and files
 .vscode/*
-!.vscode/extensions.json
 .idea
 *.suo
 *.ntvs*
@@ -28,15 +27,4 @@ coverage
 
 .eslintcache
 
-# Cypress
-/cypress/videos/
-/cypress/screenshots/
-
-# Vitest
-__screenshots__/
-
-# Vite
-*.timestamp-*-*.mjs
-
-test-results/
-playwright-report/
+.claude/*
