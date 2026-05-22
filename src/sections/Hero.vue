@@ -38,7 +38,7 @@ const timeLeft = computed(() => {
 <template>
   <section
     class="relative h-screen w-full flex items-center justify-center snap-start"
-    style="background-image: url('/assets/wall_1.jpg'); background-size: cover;"
+    style="background-image: url('/assets/img/wall_1.jpg'); background-size: cover;"
   >
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div class="relative z-10 text-center text-white p-4">
