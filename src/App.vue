@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Hero from './sections/Hero.vue'
 import Carousel from './sections/Carousel.vue'
+import Gifts from './sections/Gifts.vue'
 </script>
 
 <template>
@@ -12,6 +13,7 @@ import Carousel from './sections/Carousel.vue'
 
     <carousel />
 
+    <gifts />
   </div>
 </template>
 
