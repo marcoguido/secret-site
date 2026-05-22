@@ -40,7 +40,7 @@ npm run lint
 
 ## Deployment
 
-The site is published to [carlyeguido.love](https://carlyeguido.love) by GitHub Actions: every **published Release** triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the site with Vite, encrypts the output with [StatiCrypt](https://github.com/robinmoisson/staticrypt), and deploys it to GitHub Pages via the `actions/deploy-pages` artifact flow.
+The site is published by GitHub Actions: every **published Release** triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the site with Vite, encrypts the output with [StatiCrypt](https://github.com/robinmoisson/staticrypt), and deploys it to GitHub Pages via the `actions/deploy-pages` artifact flow.
 
 Pull requests run the same build + encrypt as a smoke test but never deploy.
 
