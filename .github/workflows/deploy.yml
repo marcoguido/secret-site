@@ -40,7 +40,7 @@ jobs:
             echo "::error::vars.STATICRYPT_SALT is not set"; exit 1
           fi
           rm -rf docs
-          npx staticrypt 'dist/*' -r \
+          npx staticrypt dist/* -r \
             -d docs \
             -p "${STATICRYPT_PASSWORD}" \
             -s "${STATICRYPT_SALT}" \
