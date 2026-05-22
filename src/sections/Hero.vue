@@ -38,15 +38,19 @@ const timeLeft = computed(() => {
 <template>
   <section
     class="relative h-screen w-full flex items-center justify-center snap-start"
-    style="background-image: url('/assets/wall_1.jpg'); background-size: cover;"
+    style="background-image: url('/assets/img/wall_1.jpg'); background-size: cover;"
   >
     <div class="absolute inset-0 bg-black opacity-50"></div>
     <div class="relative z-10 text-center text-white p-4">
       <h2 class="text-body text-2xl md:text-4xl mt-4 text-shadow-md">
         Si avvicina il
-        <em class="allison-regular text-6xl md:text-8xl text-powder-blue">sì</em> di
+        <span
+          class="bacalisties-regular text-powder-blue inline-block align-middle text-4xl md:text-6xl relative -top-1"
+          >sì</span
+        >
+        di
       </h2>
-      <h1 class="allison-regular text-6xl md:text-8xl text-powder-blue text-shadow-lg my-4">
+      <h1 class="bacalisties-regular text-6xl md:text-8xl text-powder-blue text-shadow-lg my-4">
         Carlotta & Marco
       </h1>
       <div class="mt-8">

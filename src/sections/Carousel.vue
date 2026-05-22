@@ -10,7 +10,7 @@ const carouselImages = computed(() => {
   for (let i = 0 ; i < 19 ; i++) {
     images.push({
       id: `img-${i}`,
-      path: `/assets/carousel_${i + 1}.jpg`,
+      path: `/assets/img/carousel_${i + 1}.jpg`,
       alt: `Image number ${i} of the carousel`
     })
   }

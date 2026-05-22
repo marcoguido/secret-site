@@ -13,7 +13,6 @@ import Carousel from './sections/Carousel.vue'
     <logistics />
 
     <carousel />
-
   </div>
 </template>
 
