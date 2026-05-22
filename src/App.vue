@@ -9,7 +9,6 @@ import Carousel from './sections/Carousel.vue'
   >
     <hero />
 
-
     <carousel />
 
   </div>
