@@ -1,5 +1,13 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'Bacalisties';
+  src: url('/assets/font/Bacalisties.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-mustard-yellow: #d99b16;
   --color-powder-blue: #81c5e4;
@@ -11,6 +19,12 @@
 
 .allison-regular {
   font-family: 'Allison', cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bacalisties-regular {
+  font-family: 'Bacalisties', cursive;
   font-weight: 400;
   font-style: normal;
 }

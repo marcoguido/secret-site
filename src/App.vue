@@ -10,7 +10,6 @@ import Gifts from './sections/Gifts.vue'
   >
     <hero />
 
-
     <carousel />
 
     <gifts />
