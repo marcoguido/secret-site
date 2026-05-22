@@ -13,7 +13,7 @@ const openGoogleMaps = () => {
 <template>
   <section
     class="min-h-screen w-full flex items-center justify-center p-8 snap-start"
-    style="background-image: url('/assets/wall_2.jpg'); background-size: cover;"
+    style="background-image: url('/assets/img/wall_2.jpg'); background-size: cover;"
   >
     <div class="relative z-10 text-center text-white p-4">
       <h2 class="allison-regular text-2xl md:text-4xl mt-4 text-shadow-md">
