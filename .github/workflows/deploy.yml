@@ -44,7 +44,15 @@ jobs:
             -d docs \
             -p "${STATICRYPT_PASSWORD}" \
             -s "${STATICRYPT_SALT}" \
-            -c false
+            -c false \
+            --template-button Accedi \
+            --template-color-primary \#d99b16 \
+            --template-color-secondary \#81c5e4 \
+            --template-error 'Oh oh oh, non hai detto la parola magica' \
+            --template-remember 'Mantienimi loggato' \
+            --template-title 'Sbircia qualche informazione in più sulle nostre nozze!'\
+            --template-toggle-hide 'Nascondi la password' \
+            --template-toggle-show 'Mostra la password'
 
       - name: Verify CNAME copied into output
         run: test -f docs/CNAME && grep -q '^carlyeguido\.love$' docs/CNAME

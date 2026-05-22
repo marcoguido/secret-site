@@ -72,9 +72,19 @@ export STATICRYPT_SALT='...'
 rm -rf dist docs \
   && npm ci \
   && npm run build \
-  && npx staticrypt 'dist/*' -r -d docs \
-       -p "$STATICRYPT_PASSWORD" -s "$STATICRYPT_SALT" -c false \
-  && npx http-server docs -p 4173
+  && npx staticrypt dist/* -r -d docs \
+    -p "$STATICRYPT_PASSWORD" \
+    -s "$STATICRYPT_SALT" \
+    -c false \
+    --template-button Accedi \
+    --template-color-primary \#d99b16 \
+    --template-color-secondary \#81c5e4 \
+    --template-error 'Oh oh oh, non hai detto la parola magica' \
+    --template-remember 'Mantienimi loggato' \
+    --template-title 'Sbircia qualche informazione in più sulle nostre nozze!'\
+    --template-toggle-hide 'Nascondi la password' \
+    --template-toggle-show 'Mostra la password' \
+  && npx -y http-server docs -p 4173
 ```
 
 Open `http://127.0.0.1:4173/` — the StatiCrypt password gate should appear.
