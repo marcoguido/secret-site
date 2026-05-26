@@ -1,0 +1,81 @@
+name: Build & Deploy (StatiCrypt + GitHub Pages)
+
+on:
+  release:
+    types: [published]
+  pull_request:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build & encrypt
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Build site (vue-tsc + vite)
+        run: npm run build
+
+      - name: Encrypt with StatiCrypt
+        env:
+          STATICRYPT_PASSWORD: ${{ secrets.STATICRYPT_PASSWORD }}
+          STATICRYPT_SALT: ${{ vars.STATICRYPT_SALT }}
+        run: |
+          if [ -z "${STATICRYPT_PASSWORD}" ]; then
+            echo "::error::secrets.STATICRYPT_PASSWORD is not set"; exit 1
+          fi
+          if [ -z "${STATICRYPT_SALT}" ]; then
+            echo "::error::vars.STATICRYPT_SALT is not set"; exit 1
+          fi
+          rm -rf docs
+          npx staticrypt dist/* -r \
+            -d docs \
+            -p "${STATICRYPT_PASSWORD}" \
+            -s "${STATICRYPT_SALT}" \
+            -c false \
+            --template-button Accedi \
+            --template-color-primary \#d99b16 \
+            --template-color-secondary \#81c5e4 \
+            --template-error 'Oh oh oh, non hai detto la parola magica' \
+            --template-remember 'Mantienimi loggato' \
+            --template-title 'Sbircia qualche informazione in più sulle nostre nozze!'\
+            --template-toggle-hide 'Nascondi la password' \
+            --template-toggle-show 'Mostra la password'
+
+      - name: Verify CNAME copied into output
+        run: test -f docs/CNAME && grep -q '^carlyeguido\.love$' docs/CNAME
+
+      - name: Upload Pages artifact
+        if: github.event_name == 'release'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.event_name == 'release'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/configure-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4
