@@ -15,6 +15,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@tabler/icons-vue": "^3.44.0",
     "staticrypt": "^3.5.4",
     "vue": "^3.5.32"
   },
