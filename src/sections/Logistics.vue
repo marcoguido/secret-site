@@ -4,10 +4,6 @@ import { defineComponent } from 'vue'
 defineComponent({
   name: 'logistics-section',
 })
-
-const openGoogleMaps = () => {
-  window.open('https://maps.app.goo.gl/Hdm66Cy9UFjswtMC9', '_blank')
-}
 </script>
 
 <template>
