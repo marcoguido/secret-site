@@ -79,20 +79,12 @@ const selected = ref<number | null>(null)
   >
     <h2 class="allison-regular text-4xl md:text-6xl text-center mb-6">Timeline</h2>
 
-    <div class="w-full max-w-6xl rounded-2xl overflow-hidden shadow-lg flex flex-col md:flex-row">
-      <div class="relative md:w-80 lg:w-96 flex-shrink-0 min-h-72 md:min-h-0">
-        <img
-          src="/assets/img/wall_4.jpg"
-          alt="La coppia"
-          class="w-full h-full object-cover object-top"
-        />
-      </div>
-
-      <div class="flex-1 flex flex-col bg-white timeline">
+    <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
+      <div class="flex-1 flex flex-col timeline">
         <div
           v-for="(event, i) in events"
           :key="i"
-          class="timeline-item"
+          class="timeline-item cursor-pointer"
           @click="selected = selected === i ? null : i"
         >
           <span class="time">{{ event.time }}</span>
@@ -109,6 +101,14 @@ const selected = ref<number | null>(null)
             <p v-if="selected === i">{{ event.desc }}</p>
           </div>
         </div>
+      </div>
+
+      <div class="relative md:w-90 lg:w-100 flex-shrink-0 min-h-72 md:min-h-0 md:ml-3">
+        <img
+          src="/assets/img/wall_4.jpg"
+          alt="La coppia"
+          class="w-full h-full object-cover object-top rounded-2xl max-h-144"
+        />
       </div>
     </div>
   </section>
@@ -193,6 +193,17 @@ const selected = ref<number | null>(null)
   font-style: italic;
 }
 
+@media (max-width: 768px) {
+  .card-header strong {
+    font-size: 13px;
+  }
+
+  .time {
+    font-size: 13px;
+    padding-top: 13px;
+  }
+}
+
 .tag {
   font-size: 12px;
   background: #eeedfe;
@@ -205,7 +216,7 @@ const selected = ref<number | null>(null)
 .card p {
   margin-top: 10px;
   font-size: 14px;
-  color: #666;
+  color: #a0aec4f5;
   line-height: 1.4;
 }
 </style>
