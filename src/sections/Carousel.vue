@@ -7,11 +7,11 @@ defineComponent({
 
 const carouselImages = computed(() => {
   const images = []
-  for (let i = 0 ; i < 19 ; i++) {
+  for (let i = 0; i < 19; i++) {
     images.push({
       id: `img-${i}`,
       path: `/assets/img/carousel_${i + 1}.jpg`,
-      alt: `Image number ${i} of the carousel`
+      alt: `Image number ${i} of the carousel`,
     })
   }
 

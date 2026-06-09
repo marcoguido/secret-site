@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Hero from './sections/Hero.vue'
+import Logistics from './sections/Logistics.vue'
 import Carousel from './sections/Carousel.vue'
 import Gifts from './sections/Gifts.vue'
 </script>
@@ -9,6 +10,8 @@ import Gifts from './sections/Gifts.vue'
     class="min-h-screen bg-cream-background text-powder-blue snap-y snap-mandatory overflow-y-scroll"
   >
     <hero />
+
+    <logistics />
 
     <carousel />
 
