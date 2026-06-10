@@ -1,31 +1,53 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue'
-import { reactive } from 'vue'
+import { defineComponent, onMounted, reactive, ref } from 'vue'
+import BankDetails from '@/components/BankDetails.vue'
 
 defineComponent({
   name: 'gifts-section',
 })
 
-const copyIban = async (id: string): Promise<void> => {
-  try {
-    const el = document.getElementById(id)
-    if (!el) return
-    await navigator.clipboard.writeText(el.textContent ?? '')
-    alert('IBAN copiato negli appunti!')
-  } catch (err) {
-    console.error('Failed to copy IBAN: ', err)
-    alert("Errore durante la copia dell'IBAN.")
-  }
+interface GiftItem {
+  emoji: string
+  name: string
+  desc: string
+  flipped: boolean
 }
 
-const giftItems = reactive([
+// On hover-capable devices the flip is driven by CSS :hover; on touch devices
+// we fall back to a click/tap toggle.
+const canHover = ref(false)
+
+onMounted(() => {
+  canHover.value = window.matchMedia('(hover: hover) and (pointer: fine)').matches
+})
+
+const toggleFlip = (item: GiftItem): void => {
+  if (canHover.value) return
+  item.flipped = !item.flipped
+}
+
+const travelIban = import.meta.env.VITE_TRAVEL_IBAN
+const travelIbanHolder = import.meta.env.VITE_TRAVEL_IBAN_HOLDER
+const travelIbanBank = import.meta.env.VITE_TRAVEL_IBAN_BANK
+const giftIban = import.meta.env.VITE_GIFT_IBAN
+const giftIbanHolder = import.meta.env.VITE_GIFT_IBAN_HOLDER
+const giftIbanBank = import.meta.env.VITE_GIFT_IBAN_BANK
+
+const giftItems = reactive<GiftItem[]>([
   { emoji: '🏍️', name: 'Aprilia RS660', desc: 'Il cambio di gusti di Guido', flipped: false },
   { emoji: '🚗', name: 'Hyundai i20N', desc: 'Il sogno della Carly', flipped: false },
-  { emoji: '🐱', name: 'Pappe', desc: 'Per le nostre gattine', flipped: false },
   {
-    emoji: '🍿',
-    name: 'Snack',
-    desc: 'Per viziare ancora di più le nostre gattine',
+    emoji: '💊',
+    name: 'Fermenti lattici',
+    desc: 'NECESSARI per il viaggio di nozze',
+    flipped: false,
+  },
+  { emoji: '🐈‍⬛', name: 'Pappe succulenti', desc: 'Per le nostre gattine', flipped: false },
+  { emoji: '🏥', name: 'Medicine', desc: 'Per la maledetta allergia di Lucy', flipped: false },
+  {
+    emoji: '🎁',
+    name: 'Souvenir',
+    desc: "Promettiamo di portarvi un ricordo dall'Egitto",
     flipped: false,
   },
 ])
@@ -40,7 +62,7 @@ const giftItems = reactive([
     <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
       <div class="relative md:w-80 lg:w-96 flex-shrink-0 md:mr-5 flex flex-col gap-3">
         <img
-          src="/assets/img/wall_2.jpg"
+          src="/assets/img/wall_4.jpg"
           alt="La coppia"
           class="w-full object-cover object-top rounded-2xl sm:h-60"
         />
@@ -49,76 +71,71 @@ const giftItems = reactive([
           alt="Le nostre gattine"
           class="w-full object-cover rounded-2xl max-h-80 sm:h-60"
         />
+        <img
+          src="/assets/img/wall_6.jpg"
+          alt="Le nostre gattine"
+          class="w-full object-cover rounded-2xl max-h-80 sm:h-60"
+        />
       </div>
 
       <div class="flex-1 flex flex-col">
-        <!-- Titolo -->
         <div class="p-3 flex flex-col gap-3 text-center">
           <p class="allison-regular text-3xl md:text-4xl">
-            La vostra presenza è il regalo più grande!
+            La vostra presenza è il regalo più grande che possiate farci!
           </p>
         </div>
 
-        <!-- Testo + card IBAN -->
         <div class="flex flex-col items-center gap-3 px-4 py-3">
           <p class="font-body text-sm leading-relaxed text-gray-600 text-center max-w-lg">
-            Tuttavia, se desiderate farci un dono, un contributo al nostro viaggio di nozze sarebbe
-            molto apprezzato. Altrimenti, vi lasciamo alcune cose che potrete sovvenzionare tramite
-            il nostro IBAN:
+            Tuttavia, se avrete piacere di farci un dono, c'è la possibilità di aiutarci a prendere
+            il volo (letteralmente) per girare il mondo, partecipando alla spesa per il nostro
+            viaggio di nozze in Egitto.
+          </p>
+          <p class="font-body text-sm leading-relaxed text-gray-600 text-center max-w-lg">
+            Alternativamente, con la vostra generosità, sappiate che
+            <s>
+              non abbiamo affatto in programma di comprare le cose presenti nella lista qui sotto
+            </s>
+            &nbsp;😁
           </p>
 
           <div class="flex flex-col md:flex-row gap-3 w-full">
-            <div
-              class="bg-powder-blue text-cream-background p-4 rounded-lg shadow-lg text-center flex-1"
-            >
-              <p class="font-body text-base font-semibold mb-2">✈️ IBAN viaggio di nozze</p>
-              <p id="iban-viaggio" class="font-display text-lg mb-3 select-all">YOUR_IBAN_HERE</p>
-              <button
-                @click="copyIban('iban-viaggio')"
-                class="bg-mustard-yellow text-cream-background font-body text-sm px-6 py-2 rounded-full hover:bg-mustard-yellow/80 transition-colors duration-300 focus:outline-none"
-              >
-                Copia IBAN
-              </button>
-            </div>
-
-            <div
-              class="bg-powder-blue text-cream-background p-4 rounded-lg shadow-lg text-center flex-1"
-            >
-              <p class="font-body text-base font-semibold mb-2">🎁 IBAN lista regali</p>
-              <p id="iban-regali" class="font-display text-lg mb-3 select-all">YOUR_IBAN_HERE</p>
-              <button
-                @click="copyIban('iban-regali')"
-                class="bg-mustard-yellow text-cream-background font-body text-sm px-6 py-2 rounded-full hover:bg-mustard-yellow/80 transition-colors duration-300 focus:outline-none"
-              >
-                Copia IBAN
-              </button>
-            </div>
+            <bank-details
+              v-if="false"
+              title="✈️ Viaggio di nozze ✈️"
+              :iban="travelIban"
+              :holder="travelIbanHolder"
+              :bank="travelIbanBank"
+            />
+            <bank-details
+              title="🎁 Lista regali 🎁"
+              :iban="giftIban"
+              :holder="giftIbanHolder"
+              :bank="giftIbanBank"
+            />
           </div>
         </div>
 
-        <!-- Immagine + card regali -->
         <div class="px-4 pb-4 flex flex-col md:flex-row gap-3">
-          <!-- Immagine viaggio (su mobile va sotto le card) -->
           <div class="flex-1 order-2 md:order-1 min-h-40 md:min-h-0">
             <img
-              src="/assets/img/egitto.jpeg"
+              src="/assets/img/egypt.jpeg"
               alt="Il nostro viaggio di nozze"
               class="w-full h-full object-cover rounded-xl"
             />
           </div>
 
-          <!-- Card flip regali -->
           <div class="flex-1 order-1 md:order-2 grid grid-cols-2 gap-2">
             <div
               v-for="item in giftItems"
               :key="item.name"
               class="flip-card cursor-pointer"
               :class="{ flipped: item.flipped }"
-              @click="item.flipped = !item.flipped"
+              @click="toggleFlip(item)"
             >
               <div class="flip-inner">
                 <div
-                  class="flip-front bg-cream-background border border-powder-blue/40 rounded-xl flex items-center justify-center"
+                  class="flip-front bg-cream-background border-mustard-yellow border-2 rounded-xl flex items-center justify-center"
                 >
                   <span class="text-3xl">{{ item.emoji }}</span>
                 </div>
@@ -153,6 +170,12 @@ const giftItems = reactive([
 
 .flip-card.flipped .flip-inner {
   transform: rotateY(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .flip-card:hover .flip-inner {
+    transform: rotateY(180deg);
+  }
 }
 
 .flip-front,
