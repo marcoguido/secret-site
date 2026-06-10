@@ -6,10 +6,11 @@ defineComponent({
   name: 'gifts-section',
 })
 
-const copyIban = async (id) => {
+const copyIban = async (id: string): Promise<void> => {
   try {
-    const text = document.getElementById(id).textContent
-    await navigator.clipboard.writeText(text)
+    const el = document.getElementById(id)
+    if (!el) return
+    await navigator.clipboard.writeText(el.textContent ?? '')
     alert('IBAN copiato negli appunti!')
   } catch (err) {
     console.error('Failed to copy IBAN: ', err)
