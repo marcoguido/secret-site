@@ -2,6 +2,7 @@
 import Hero from './sections/Hero.vue'
 import Logistics from './sections/Logistics.vue'
 import Carousel from './sections/Carousel.vue'
+import Gifts from './sections/Gifts.vue'
 </script>
 
 <template>
@@ -13,6 +14,8 @@ import Carousel from './sections/Carousel.vue'
     <logistics />
 
     <carousel />
+
+    <gifts />
   </div>
 </template>
 
