@@ -16,7 +16,11 @@ const props = defineProps<{
 const rows = computed(() => [
   { value: props.iban, label: 'Copia IBAN', textClass: 'font-display text-lg select-all' },
   { value: props.holder, label: 'Copia intestatario', textClass: 'font-body text-sm' },
-  { value: `Banca: ${props.bank}`, label: 'Copia banca', textClass: 'font-body text-sm opacity-80' },
+  {
+    value: `Banca: ${props.bank}`,
+    label: 'Copia banca',
+    textClass: 'font-body text-sm opacity-80',
+  },
 ])
 
 const copyText = async (value: string): Promise<void> => {
