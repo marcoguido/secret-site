@@ -7,25 +7,15 @@ import Gifts from './sections/Gifts.vue'
 </script>
 
 <template>
-  <div class="min-h-screen bg-cream-background text-powder-blue snap-y snap-mandatory">
+  <div class="min-h-screen bg-cream-background text-powder-blue">
     <hero />
 
     <logistics />
 
     <timeline />
 
-    <carousel />
-
     <gifts />
+
+    <carousel />
   </div>
 </template>
-
-<style scoped>
-.snap-y.snap-mandatory {
-  scroll-snap-type: y mandatory;
-}
-
-.snap-start {
-  scroll-snap-align: start;
-}
-</style>

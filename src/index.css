@@ -28,3 +28,15 @@
   font-weight: 400;
   font-style: normal;
 }
+
+/* Scroll-snap only works on the element that actually scrolls. This is a
+   single-page layout where the document itself scrolls (the App wrapper has
+   no fixed height / overflow), so the snap container is <html>, not a div. */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.snap-start {
+  scroll-snap-align: start;
+}
