@@ -62,18 +62,24 @@ const giftItems = reactive<GiftItem[]>([
     <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
       <div class="relative md:w-80 lg:w-96 flex-shrink-0 md:mr-5 flex flex-col gap-3">
         <img
-          src="/assets/img/wall_4.jpg"
+          src="/assets/img/wall_4.webp"
           alt="La coppia"
+          loading="lazy"
+          decoding="async"
           class="w-full object-cover object-top rounded-2xl sm:h-60"
         />
         <img
-          src="/assets/img/pelose.jpg"
+          src="/assets/img/pelose.webp"
           alt="Le nostre gattine"
+          loading="lazy"
+          decoding="async"
           class="w-full object-cover rounded-2xl max-h-80 sm:h-60"
         />
         <img
-          src="/assets/img/wall_6.jpg"
+          src="/assets/img/wall_6.webp"
           alt="Le nostre gattine"
+          loading="lazy"
+          decoding="async"
           class="w-full object-cover rounded-2xl max-h-80 sm:h-60"
         />
       </div>
@@ -119,8 +125,10 @@ const giftItems = reactive<GiftItem[]>([
         <div class="px-4 pb-4 flex flex-col md:flex-row gap-3">
           <div class="flex-1 order-2 md:order-1 min-h-40 md:min-h-0">
             <img
-              src="/assets/img/egypt.jpeg"
+              src="/assets/img/egypt.webp"
               alt="Il nostro viaggio di nozze"
+              loading="lazy"
+              decoding="async"
               class="w-full h-full object-cover rounded-xl"
             />
           </div>
