@@ -7,14 +7,12 @@ import Gifts from './sections/Gifts.vue'
 </script>
 
 <template>
-  <div
-    class="min-h-screen bg-cream-background text-powder-blue snap-y snap-mandatory"
-  >
+  <div class="min-h-screen bg-cream-background text-powder-blue snap-y snap-mandatory">
     <hero />
 
     <logistics />
 
-	<timeline />
+    <timeline />
 
     <carousel />
 
