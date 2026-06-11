@@ -85,7 +85,7 @@ const giftItems = reactive<GiftItem[]>([
 
       <div class="order-1 md:order-2 flex-1 flex flex-col">
         <div class="p-3 flex flex-col gap-3 text-center">
-          <p class="allison-regular text-powder-blue text-3xl md:text-4xl">
+          <p class="allison-regular text-powder-blue text-4xl tracking-wide">
             La vostra presenza è già il regalo più grande che possiate farci!
           </p>
         </div>
