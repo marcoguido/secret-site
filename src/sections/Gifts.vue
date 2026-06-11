@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
-import SectionHeader from '@/components/SectionHeader.vue'
+import SiteSection from '@/components/Layout/SiteSection.vue'
 import BankDetails from '@/components/BankDetails.vue'
 
 defineComponent({
@@ -55,14 +55,8 @@ const giftItems = reactive<GiftItem[]>([
 </script>
 
 <template>
-  <section
-    class="min-h-screen w-full flex flex-col items-center justify-start md:justify-center p-6 md:p-12 bg-cream-background"
-  >
-    <section-header
-      heading="Lista Nozze"
-    />
-
-    <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
+  <site-section heading="Lista Nozze">
+    <template #content>
       <div class="relative md:w-80 lg:w-96 shrink-0 md:mr-5 flex flex-col gap-3 mt-4">
         <img
           src="/assets/img/wall_4.webp"
@@ -161,8 +155,8 @@ const giftItems = reactive<GiftItem[]>([
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </template>
+  </site-section>
 </template>
 
 <style scoped>

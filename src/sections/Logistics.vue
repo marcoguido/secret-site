@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
-import SectionHeader from '@/components/SectionHeader.vue'
+import SiteSection from '@/components/Layout/SiteSection.vue'
 
 defineComponent({
   name: 'logistics-section',
@@ -8,15 +8,11 @@ defineComponent({
 </script>
 
 <template>
-  <section
-    class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-12 bg-cream-background"
+  <site-section
+    heading="Location"
+    subHeading="Siamo entusiasti di condividere con voi il giorno più bello della nostra vita"
   >
-    <section-header
-      heading="Location"
-      sub-heading="Siamo entusiasti di condividere con voi il giorno più bello della nostra vita"
-    />
-
-    <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
+    <template #content>
       <div class="relative md:w-80 lg:w-96 shrink-0 md:min-h-0 md:mr-5">
         <img
           src="/assets/img/wall_2.webp"
@@ -30,18 +26,16 @@ defineComponent({
       <div class="flex-1 flex flex-col">
         <div class="p-6 flex flex-col gap-3">
           <p class="font-body text-gray-600">
-            Il grande giorno sarà il <b>14 novembre 2026</b> e si terrà interamente presso il ristorante
-            <span
-              class="bacalisties-regular text-powder-blue text-2xl inline-block align-middle"
+            Il grande giorno sarà il <b>14 novembre 2026</b> e si terrà interamente presso il
+            ristorante
+            <span class="bacalisties-regular text-powder-blue text-2xl inline-block align-middle"
               >Le Querce</span
             >, che ci accoglierà col suo parco e la sua bellissima struttura. Là ci saranno
             <b>Duska</b>, <b>Ermanno</b> e l'intero team del Ristorante ad occuparsi di ogni minima
             cosa!
           </p>
 
-          <p class="text-gray-600">
-            Qui trovate l'indirizzo del Ristorante:
-          </p>
+          <p class="text-gray-600">Qui trovate l'indirizzo del Ristorante:</p>
 
           <ul class="font-body text-sm text-gray-700 flex flex-col gap-2 mt-1">
             <li class="flex items-start gap-2">
@@ -51,8 +45,7 @@ defineComponent({
           </ul>
 
           <p class="text-gray-600">
-            ...Oppure cliccate sulla mappa sottostante per
-            aprire Google Maps più comodamente
+            ...Oppure cliccate sulla mappa sottostante per aprire Google Maps più comodamente
           </p>
         </div>
 
@@ -66,6 +59,6 @@ defineComponent({
           ></iframe>
         </div>
       </div>
-    </div>
-  </section>
+    </template>
+  </site-section>
 </template>
