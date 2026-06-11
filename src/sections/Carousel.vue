@@ -21,7 +21,7 @@ const carouselImages = computed(() => {
 
 <template>
   <section class="w-full h-48 overflow-hidden snap-start flex items-center bg-powder-blue">
-    <div class="w-full flex space-x-4 animate-marquee whitespace-nowrap">
+    <div class="flex animate-marquee">
       <img
         v-for="image in carouselImages"
         :key="image.id"
@@ -29,7 +29,18 @@ const carouselImages = computed(() => {
         :alt="image.alt"
         loading="lazy"
         decoding="async"
-        class="h-40 object-cover rounded-lg shadow-md shrink-0"
+        class="h-40 mr-4 object-cover rounded-lg shadow-md shrink-0"
+      />
+      <!-- Duplicate set so the -50% marquee loops seamlessly with no blank gap -->
+      <img
+        v-for="image in carouselImages"
+        :key="`${image.id}-clone`"
+        :src="image.path"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        class="h-40 mr-4 object-cover rounded-lg shadow-md shrink-0"
       />
     </div>
   </section>
@@ -37,7 +48,7 @@ const carouselImages = computed(() => {
 
 <style scoped>
 .animate-marquee {
-  animation: marquee 60s linear infinite;
+  animation: marquee 35s linear infinite;
 }
 
 @keyframes marquee {
