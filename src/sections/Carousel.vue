@@ -20,7 +20,7 @@ const carouselImages = computed(() => {
 </script>
 
 <template>
-  <section class="w-full h-48 overflow-hidden snap-start flex items-center bg-powder-blue">
+  <section class="w-full h-48 overflow-hidden flex items-center bg-powder-blue">
     <div class="flex animate-marquee">
       <img
         v-for="image in carouselImages"

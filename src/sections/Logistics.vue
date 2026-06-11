@@ -8,7 +8,7 @@ defineComponent({
 
 <template>
   <section
-    class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-12 snap-start bg-cream-background"
+    class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-12 bg-cream-background"
   >
     <h2 class="allison-regular text-4xl md:text-6xl text-center mb-2">Location</h2>
     <p class="font-body text-center text-base md:text-lg leading-relaxed mb-8 max-w-xl">

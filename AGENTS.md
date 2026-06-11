@@ -88,7 +88,6 @@ Before opening a PR, run `npm run lint:check` and `npm run format:check` — the
   - Colors: `mustard-yellow` (#d99b16), `powder-blue` (#81c5e4), `cream-background` (#fdfbf7) → usable as `text-powder-blue`, `bg-cream-background`, etc.
   - Fonts: `font-display` (Playfair Display, serif), `font-body` (Lato/Montserrat).
 - Decorative script fonts use utility classes from `index.css`: `.allison-regular` (loaded via Google Fonts in `index.html`) and `.bacalisties-regular` (local `@font-face`).
-- Layout relies on CSS scroll-snap: the scroll container lives in `App.vue`; each section uses `snap-start`. Preserve this when adding sections.
 - Prefer Tailwind utility classes in templates over `<style>` blocks. Use scoped `<style>` only for things Tailwind can't express cleanly (keyframes/animations — see `Carousel.vue`'s marquee).
 
 ## Testing
