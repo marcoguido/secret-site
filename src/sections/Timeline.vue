@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, defineComponent } from 'vue'
 import {
   IconGlass,
   IconCamera,
@@ -11,61 +11,63 @@ import {
   IconMoonStars,
 } from '@tabler/icons-vue'
 
+defineComponent({
+  name: 'timeline-section',
+})
+
 const events = [
+  {
+    time: '11:00',
+    icon: IconGlass,
+    title: 'Benvenuti a tutti!',
+    desc: "Aspetteremo l'inizio della celebrazione nel parco del ristorante, sorseggiando un gradevole analcolico",
+  },
   {
     time: '11:30',
     icon: IconCirclesRelation,
-    title: 'Cerimonia',
-    tag: 'Rito',
-    desc: 'Scambio dei voti davanti ai vostri cari.',
+    title: 'Rito Civile',
+    desc: 'Ci scambieremo i voti nel parco del ristorante e poi saremo ufficialmente Marito e Moglie: preparate i fazzoletti',
   },
   {
     time: '12:00',
     icon: IconCamera,
     title: 'Servizio fotografico',
-    tag: 'Foto',
-    desc: 'Passeggiata nei giardini per le foto di coppia e con le famiglie.',
+    desc: 'Passeggiata nei giardini sia per le foto di coppia, ma anche per quelle con famiglie ed amici',
   },
   {
-    time: '13:30',
+    time: '13:00',
     icon: IconGlass,
     title: 'Aperitivo',
-    tag: 'Welcome',
-    desc: 'Benvenuto agli ospiti con Prosecco, tartine e musica ambient sul terrazzo panoramico.',
+    desc: 'Si aprono le danze: Prosecco, tartine e musica vi aspettano in terrazza e veranda per iniziare i festeggiamenti',
   },
   {
     time: '14:00',
     icon: IconToolsKitchen2,
     title: 'Pranzo nuziale',
-    tag: 'Banchetto',
     desc: 'Menu a base di prodotti stagionali con pairing di vini selezionati.',
   },
   {
     time: '18:30',
     icon: IconChefHat,
     title: 'Buffet serale',
-    tag: 'Banchetto',
     desc: 'Arrivo nuovi ospiti. Lancio del bouquet.',
   },
   {
     time: '19:30',
     icon: IconCake,
     title: 'Taglio della torta',
-    tag: 'Dolce',
     desc: 'Taglio e servizio torta. Si mangerà la torta preferita degli sposi.',
   },
   {
     time: '21:15',
     icon: IconMusic,
     title: 'Festa & ballo',
-    tag: 'Party',
     desc: 'DJ set e pista da ballo aperta. First dance della coppia, poi tutti in pista fino alle 23:00.',
   },
   {
     time: '23:30',
     icon: IconMoonStars,
     title: 'Buonanotte',
-    tag: 'Rientro',
     desc: 'Grazie e buon rientro.',
   },
 ]
@@ -75,7 +77,7 @@ const selected = ref<number | null>(null)
 
 <template>
   <section
-    class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-12 snap-start bg-cream-background"
+    class="min-h-screen w-full flex flex-col items-center justify-start md:justify-center p-6 md:p-12 snap-start bg-cream-background"
   >
     <h2 class="allison-regular text-4xl md:text-6xl text-center mb-6">Timeline</h2>
 
@@ -87,18 +89,19 @@ const selected = ref<number | null>(null)
           class="timeline-item cursor-pointer"
           @click="selected = selected === i ? null : i"
         >
-          <span class="time">{{ event.time }}</span>
+          <span class="time text-mustard-yellow">{{ event.time }}</span>
           <div class="dot-col">
-            <div class="dot" :class="{ active: selected === i }">
+            <div class="dot text-powder-blue" :class="{ active: selected === i }">
               <component :is="event.icon" />
             </div>
           </div>
           <div class="card" :class="{ expanded: selected === i }">
             <div class="card-header">
               <strong>{{ event.title }}</strong>
-              <span class="tag">{{ event.tag }}</span>
             </div>
-            <p v-if="selected === i">{{ event.desc }}</p>
+            <div class="desc">
+              <p>{{ event.desc }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -131,7 +134,6 @@ const selected = ref<number | null>(null)
 .time {
   font-size: 16px;
   font-weight: 500;
-  color: #7bbce3;
   padding-top: 6px;
 }
 
@@ -166,7 +168,6 @@ const selected = ref<number | null>(null)
   align-items: center;
   justify-content: center;
   z-index: 2;
-  color: #7bbce3;
 }
 
 .dot svg {
@@ -206,17 +207,20 @@ const selected = ref<number | null>(null)
   }
 }
 
-.tag {
-  font-size: 12px;
-  background: #eeedfe;
-  color: #534ab7;
-  border-radius: 999px;
-  padding: 4px 10px;
-  white-space: nowrap;
+.desc {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
 }
 
-.card p {
-  margin-top: 10px;
+.card.expanded .desc {
+  grid-template-rows: 1fr;
+}
+
+.desc p {
+  overflow: hidden;
+  min-height: 0;
+  padding-top: 10px;
   font-size: 14px;
   color: #a0aec4f5;
   line-height: 1.4;
