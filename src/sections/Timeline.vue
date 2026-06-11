@@ -87,10 +87,12 @@ const selected = ref<number | null>(0)
         <div
           v-for="(event, i) in events"
           :key="i"
-          class="grid grid-cols-[72px_42px_1fr] relative pb-3.5 cursor-pointer"
+          class="grid grid-cols-[42px_1fr] md:grid-cols-[72px_42px_1fr] relative pb-3.5 cursor-pointer"
           @click="selected = selected === i ? null : i"
         >
-          <span class="text-powder-blue text-[13px] md:text-base font-medium pt-3.25 md:pt-3">
+          <span
+            class="hidden md:block text-powder-blue text-[13px] md:text-base font-medium pt-3.25 md:pt-3"
+          >
             {{ event.time }}
           </span>
           <div
@@ -106,6 +108,7 @@ const selected = ref<number | null>(0)
           <div class="border border-[#ececec] rounded-2xl py-3.5 px-4.5 bg-white">
             <div class="flex items-center justify-between gap-2.5">
               <strong class="text-[13px] md:text-base text-powder-blue font-bold">
+                <span class="md:hidden font-medium">{{ `Ore ${event.time}` }} • </span>
                 {{ event.title }}
               </strong>
             </div>
@@ -114,7 +117,7 @@ const selected = ref<number | null>(0)
               :class="selected === i ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'"
             >
               <div class="overflow-hidden min-h-0">
-                <p class="pt-2.5 text-sm text-gray-600 leading-[1.4]">
+                <p class="pt-2.5 md:text-sm leading-[1.4]">
                   {{ event.desc }}
                 </p>
               </div>
