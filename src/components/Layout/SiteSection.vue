@@ -17,7 +17,7 @@ defineProps<{
   <section
     class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-12 bg-cream-background"
   >
-    <section-header :heading :sub-heading :align="headingAlignment" />
+    <section-header :heading :sub-heading :alignment="headingAlignment" />
 
     <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row font-body text-gray-600 leading-relaxed">
       <slot name="content" />
