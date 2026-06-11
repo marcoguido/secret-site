@@ -79,7 +79,7 @@ const selected = ref<number | null>(0)
 
 <template>
   <section
-    class="min-h-screen w-full flex flex-col items-center justify-start md:justify-center p-6 md:p-12 snap-start bg-cream-background"
+    class="min-h-screen w-full flex flex-col items-center justify-start md:justify-center p-6 md:p-12 bg-cream-background"
   >
     <div class="w-full max-w-6xl">
       <section-header content="Timeline" />

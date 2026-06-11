@@ -55,7 +55,7 @@ const giftItems = reactive<GiftItem[]>([
 
 <template>
   <section
-    class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-12 snap-start bg-cream-background"
+    class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-12 bg-cream-background"
   >
     <h2 class="allison-regular text-4xl md:text-6xl text-center mb-2">Lista Nozze</h2>
 
