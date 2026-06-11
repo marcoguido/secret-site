@@ -60,7 +60,7 @@ const giftItems = reactive<GiftItem[]>([
     <h2 class="allison-regular text-4xl md:text-6xl text-center mb-2">Lista Nozze</h2>
 
     <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
-      <div class="relative md:w-80 lg:w-96 flex-shrink-0 md:mr-5 flex flex-col gap-3">
+      <div class="relative md:w-80 lg:w-96 shrink-0 md:mr-5 flex flex-col gap-3 mt-4">
         <img
           src="/assets/img/wall_4.webp"
           alt="La coppia"

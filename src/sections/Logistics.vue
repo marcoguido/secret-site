@@ -16,7 +16,7 @@ defineComponent({
     </p>
 
     <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
-      <div class="relative md:w-80 lg:w-96 flex-shrink-0 md:min-h-0 md:mr-5">
+      <div class="relative md:w-80 lg:w-96 shrink-0 md:min-h-0 md:mr-5">
         <img
           src="/assets/img/wall_2.webp"
           alt="La coppia"

@@ -29,7 +29,7 @@ const carouselImages = computed(() => {
         :alt="image.alt"
         loading="lazy"
         decoding="async"
-        class="h-40 object-cover rounded-lg shadow-md flex-shrink-0"
+        class="h-40 object-cover rounded-lg shadow-md shrink-0"
       />
     </div>
   </section>
