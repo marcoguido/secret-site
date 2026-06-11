@@ -31,3 +31,6 @@ coverage
 
 # Encrypted build output (produced by CI, not committed)
 docs/
+
+# Local backup of original (pre-optimization) images — not deployed
+image-originals/

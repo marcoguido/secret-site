@@ -18,8 +18,10 @@ defineComponent({
     <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
       <div class="relative md:w-80 lg:w-96 flex-shrink-0 md:min-h-0 md:mr-5">
         <img
-          src="/assets/img/wall_2.jpg"
+          src="/assets/img/wall_2.webp"
           alt="La coppia"
+          loading="lazy"
+          decoding="async"
           class="w-full h-full object-cover object-top rounded-2xl"
         />
       </div>

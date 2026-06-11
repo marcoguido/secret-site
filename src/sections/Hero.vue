@@ -39,7 +39,7 @@ const timeLeft = computed(() => {
   <section
     class="relative h-screen w-full flex items-center justify-center snap-start"
     style="
-      background-image: url('/assets/img/wall_1.jpg');
+      background-image: url('/assets/img/wall_1.webp');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
