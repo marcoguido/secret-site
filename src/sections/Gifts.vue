@@ -89,17 +89,17 @@ const giftItems = reactive<GiftItem[]>([
         </div>
 
         <div class="flex flex-col items-center gap-3 px-4 py-3">
-          <p class="font-body text-sm leading-relaxed text-gray-600 text-center max-w-lg">
+          <p>
             Tuttavia, se avrete piacere di farci un dono, c'è la possibilità di aiutarci a prendere
             il volo (letteralmente) per girare il mondo, partecipando alla spesa per il nostro
-            viaggio di nozze in Egitto.
+            viaggio di nozze in Egitto ✈️
           </p>
-          <p class="font-body text-sm leading-relaxed text-gray-600 text-center max-w-lg">
+          <p>
             Alternativamente, con la vostra generosità, sappiate che
             <s>
               non abbiamo affatto in programma di comprare le cose presenti nella lista qui sotto
             </s>
-            &nbsp;😁
+            &nbsp; 😁
           </p>
 
           <div class="flex flex-col md:flex-row gap-3 w-full">

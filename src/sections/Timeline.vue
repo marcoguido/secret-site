@@ -105,16 +105,16 @@ const selected = ref<number | null>(0)
           </div>
           <div class="border border-[#ececec] rounded-2xl py-3.5 px-4.5 bg-white">
             <div class="flex items-center justify-between gap-2.5">
-              <strong class="text-[13px] md:text-base text-powder-blue font-bold">{{
-                event.title
-              }}</strong>
+              <strong class="text-[13px] md:text-base text-powder-blue font-bold">
+                {{ event.title }}
+              </strong>
             </div>
             <div
               class="grid transition-[grid-template-rows] duration-300 ease-[ease]"
               :class="selected === i ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'"
             >
               <div class="overflow-hidden min-h-0">
-                <p class="pt-2.5 text-sm text-[#a0aec4f5] leading-[1.4]">
+                <p class="pt-2.5 text-sm text-gray-600 leading-[1.4]">
                   {{ event.desc }}
                 </p>
               </div>
