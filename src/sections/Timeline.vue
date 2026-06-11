@@ -82,25 +82,40 @@ const selected = ref<number | null>(null)
     <h2 class="allison-regular text-4xl md:text-6xl text-center mb-6">Timeline</h2>
 
     <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
-      <div class="flex-1 flex flex-col timeline">
+      <div class="flex-1 flex flex-col p-4">
         <div
           v-for="(event, i) in events"
           :key="i"
-          class="timeline-item cursor-pointer"
+          class="grid grid-cols-[72px_42px_1fr] relative pb-[14px] cursor-pointer"
           @click="selected = selected === i ? null : i"
         >
-          <span class="time text-mustard-yellow">{{ event.time }}</span>
-          <div class="dot-col">
-            <div class="dot text-powder-blue" :class="{ active: selected === i }">
-              <component :is="event.icon" />
+          <span
+            class="text-mustard-yellow text-[13px] md:text-base font-medium pt-[13px] md:pt-1.5"
+            >{{ event.time }}</span
+          >
+          <div
+            class="relative flex justify-center pt-2.5 pr-3 before:content-[''] before:absolute before:top-2.5 before:-bottom-6 before:w-0.5 before:bg-[#d9d9d9]"
+            :class="{ 'before:hidden': i === events.length - 1 }"
+          >
+            <div
+              class="w-7 h-7 rounded-full bg-white border border-[#d6d6d6] flex items-center justify-center z-[2] text-powder-blue"
+            >
+              <component :is="event.icon" :size="16" />
             </div>
           </div>
-          <div class="card" :class="{ expanded: selected === i }">
-            <div class="card-header">
-              <strong>{{ event.title }}</strong>
+          <div class="border border-[#ececec] rounded-2xl py-[14px] px-[18px] bg-white">
+            <div class="flex items-center justify-between gap-2.5">
+              <strong class="text-[13px] md:text-base text-[#7bbce3] font-semibold italic">{{
+                event.title
+              }}</strong>
             </div>
-            <div class="desc">
-              <p>{{ event.desc }}</p>
+            <div
+              class="grid transition-[grid-template-rows] duration-300 ease-[ease]"
+              :class="selected === i ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'"
+            >
+              <p class="overflow-hidden min-h-0 pt-2.5 text-sm text-[#a0aec4f5] leading-[1.4]">
+                {{ event.desc }}
+              </p>
             </div>
           </div>
         </div>
@@ -118,111 +133,3 @@ const selected = ref<number | null>(null)
     </div>
   </section>
 </template>
-
-<style scoped>
-.timeline {
-  padding: 16px;
-}
-
-.timeline-item {
-  display: grid;
-  grid-template-columns: 72px 42px 1fr;
-  position: relative;
-  padding-bottom: 14px;
-}
-
-.time {
-  font-size: 16px;
-  font-weight: 500;
-  padding-top: 6px;
-}
-
-.dot-col {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  padding-top: 10px;
-  padding-right: 12px;
-}
-
-.dot-col::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  bottom: -24px;
-  width: 2px;
-  background: #d9d9d9;
-}
-
-.timeline-item:last-child .dot-col::before {
-  display: none;
-}
-
-.dot {
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  background: white;
-  border: 1px solid #d6d6d6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-.dot svg {
-  width: 16px;
-  height: 16px;
-}
-
-.card {
-  border: 1px solid #ececec;
-  border-radius: 16px;
-  padding: 14px 18px;
-  background: white;
-}
-
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.card-header strong {
-  font-size: 16px;
-  color: #7bbce3;
-  font-weight: 600;
-  font-style: italic;
-}
-
-@media (max-width: 768px) {
-  .card-header strong {
-    font-size: 13px;
-  }
-
-  .time {
-    font-size: 13px;
-    padding-top: 13px;
-  }
-}
-
-.desc {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.3s ease;
-}
-
-.card.expanded .desc {
-  grid-template-rows: 1fr;
-}
-
-.desc p {
-  overflow: hidden;
-  min-height: 0;
-  padding-top: 10px;
-  font-size: 14px;
-  color: #a0aec4f5;
-  line-height: 1.4;
-}
-</style>
