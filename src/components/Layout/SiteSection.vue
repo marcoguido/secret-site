@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineComponent, defineProps } from 'vue'
+import { defineComponent } from 'vue'
 import SectionHeader from '@/components/Layout/SectionHeader.vue'
 
 defineComponent({

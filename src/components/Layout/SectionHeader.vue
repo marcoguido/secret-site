@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineComponent, withDefaults } from 'vue'
+import { defineComponent } from 'vue'
 
 defineComponent({
   name: 'section-header',
