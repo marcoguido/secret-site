@@ -10,7 +10,7 @@ const carouselImages = computed(() => {
   for (let i = 0; i < 19; i++) {
     images.push({
       id: `img-${i}`,
-      path: `/assets/img/carousel_${i + 1}.jpg`,
+      path: `/assets/img/carousel_${i + 1}.webp`,
       alt: `Image number ${i} of the carousel`,
     })
   }
@@ -27,6 +27,8 @@ const carouselImages = computed(() => {
         :key="image.id"
         :src="image.path"
         :alt="image.alt"
+        loading="lazy"
+        decoding="async"
         class="h-40 object-cover rounded-lg shadow-md flex-shrink-0"
       />
     </div>

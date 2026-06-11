@@ -3,6 +3,7 @@ import Hero from './sections/Hero.vue'
 import Logistics from './sections/Logistics.vue'
 import Timeline from './sections/Timeline.vue'
 import Carousel from './sections/Carousel.vue'
+import Gifts from './sections/Gifts.vue'
 </script>
 
 <template>
@@ -13,9 +14,11 @@ import Carousel from './sections/Carousel.vue'
 
     <logistics />
 
+	<timeline />
+
     <carousel />
 
-	<timeline />
+    <gifts />
   </div>
 </template>
 

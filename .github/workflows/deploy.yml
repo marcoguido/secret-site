@@ -26,6 +26,13 @@ jobs:
       - run: npm ci
 
       - name: Build site (vue-tsc + vite)
+        env:
+          VITE_TRAVEL_IBAN: ${{ secrets.VITE_TRAVEL_IBAN }}
+          VITE_TRAVEL_IBAN_HOLDER: ${{ secrets.VITE_TRAVEL_IBAN_HOLDER }}
+          VITE_TRAVEL_IBAN_BANK: ${{ secrets.VITE_TRAVEL_IBAN_BANK }}
+          VITE_GIFT_IBAN: ${{ secrets.VITE_GIFT_IBAN }}
+          VITE_GIFT_IBAN_HOLDER: ${{ secrets.VITE_GIFT_IBAN_HOLDER }}
+          VITE_GIFT_IBAN_BANK: ${{ secrets.VITE_GIFT_IBAN_BANK }}
         run: npm run build
 
       - name: Encrypt with StatiCrypt
