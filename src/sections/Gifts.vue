@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
+import SectionHeader from '@/components/SectionHeader.vue'
 import BankDetails from '@/components/BankDetails.vue'
 
 defineComponent({
@@ -55,9 +56,11 @@ const giftItems = reactive<GiftItem[]>([
 
 <template>
   <section
-    class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-12 bg-cream-background"
+    class="min-h-screen w-full flex flex-col items-center justify-start md:justify-center p-6 md:p-12 bg-cream-background"
   >
-    <h2 class="allison-regular text-4xl md:text-6xl text-center mb-2">Lista Nozze</h2>
+    <section-header
+      heading="Lista Nozze"
+    />
 
     <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
       <div class="relative md:w-80 lg:w-96 shrink-0 md:mr-5 flex flex-col gap-3 mt-4">
@@ -86,8 +89,8 @@ const giftItems = reactive<GiftItem[]>([
 
       <div class="flex-1 flex flex-col">
         <div class="p-3 flex flex-col gap-3 text-center">
-          <p class="allison-regular text-3xl md:text-4xl">
-            La vostra presenza è il regalo più grande che possiate farci!
+          <p class="text-3xl md:text-4xl">
+            La vostra presenza è già il regalo più grande che possiate farci!
           </p>
         </div>
 

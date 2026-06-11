@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, defineComponent } from 'vue'
 import SectionHeader from '@/components/SectionHeader.vue'
-import SectionSubHeader from '@/components/SectionSubHeader.vue'
 import {
   IconGlass,
   IconCamera,
@@ -81,13 +80,11 @@ const selected = ref<number | null>(0)
   <section
     class="min-h-screen w-full flex flex-col items-center justify-start md:justify-center p-6 md:p-12 bg-cream-background"
   >
-    <div class="w-full max-w-6xl">
-      <section-header content="Timeline" />
-
-      <section-sub-header
-        content="A voi una piccola anticipazione dei momenti salienti della giornata"
-      />
-    </div>
+    <section-header
+      heading="Timeline"
+      sub-heading="A voi una piccola anticipazione dei momenti salienti della giornata"
+      alignment="right"
+    />
 
     <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
       <div class="flex-1 flex flex-col pr-4">
