@@ -16,6 +16,7 @@ All **user-facing copy is in Italian**. Keep new copy in Italian and match the w
 | Language | TypeScript (strict, via `@vue/tsconfig`) |
 | Build tool | Vite 8 |
 | Styling | Tailwind CSS v4 (via `@tailwindcss/vite`, CSS-first `@theme` config — **no `tailwind.config.js`**) |
+| Icons | Tabler Icons (`@tabler/icons-vue`) |
 | Linting | oxlint + ESLint (flat config in `eslint.config.ts`) |
 | Formatting | Prettier |
 | Testing | None set up (no test runner installed) |
@@ -30,15 +31,23 @@ index.html              # Vite entry HTML; loads Google Font "Allison", favicons
 src/
   main.ts               # App entry — createApp(App).mount('#app'). THIS is the real entry point.
   index.css             # Tailwind import + @theme tokens + @font-face + font utility classes
-  App.vue               # Root layout; composes the page sections, owns scroll-snap container
+  App.vue               # Root layout; composes the page sections in order
   sections/
     Hero.vue            # Landing hero + live countdown to the wedding date
     Logistics.vue       # Venue info + embedded Google Map
-    Carousel.vue        # Auto-scrolling marquee of photos
+    Timeline.vue        # Wedding-day schedule — accordion of events (Tabler icons)
+    Gifts.vue           # "Lista Nozze" — flip-card gift list + IBAN bank details
+    Carousel.vue        # Interactive auto-scrolling photo marquee (drag/scroll + autoplay)
+  components/
+    BankDetails.vue     # IBAN card (iban/holder/bank) with per-line copy buttons
+    CopyIcon.vue        # Inline SVG copy icon
+    Layout/
+      SiteSection.vue   # Section shell — full-height wrapper + heading + #content slot
+      SectionHeader.vue # Heading + optional sub-heading, with alignment prop
 public/
   CNAME                 # Custom-domain marker (carlyeguido.love); copied through dist/ → docs/
   assets/
-    img/                # carousel_1..19.jpg, wall_1..6.jpg
+    img/                # carousel_1..19.webp, wall_1..6.webp, pelose.webp, egypt.webp
     font/Bacalisties.ttf
     favicon/            # favicons + site.webmanifest
 .github/workflows/
@@ -46,7 +55,7 @@ public/
   lint.yml              # Lint + format check (on PR) — intended as a required status check
 ```
 
-The page is a vertical scroll-snap layout: `App.vue` renders `<hero>`, `<logistics>`, `<carousel>` in order. To add a section, create `src/sections/<Name>.vue` and import + place it in `App.vue`.
+The page is a single vertical stack: `App.vue` renders `<hero>`, `<logistics>`, `<timeline>`, `<gifts>`, `<carousel>` in order. Most sections wrap their body in `<site-section>` (`src/components/Layout/`), which provides the full-height shell, heading, and `#content` slot. To add a section, create `src/sections/<Name>.vue` (typically using `<site-section>`) and import + place it in `App.vue`.
 
 ## Commands
 
@@ -73,7 +82,8 @@ Before opening a PR, run `npm run lint:check` and `npm run format:check` — the
 
 ### Vue components
 - Always `<script setup lang="ts">`.
-- Each section component calls `defineComponent({ name: '<kebab>-section' })` for a stable devtools/name (existing pattern: `hero-section`, `logistics-section`, `carousel-section`). Follow it for new sections.
+- Section components (`src/sections/`) call `defineComponent({ name: '<kebab>-section' })` for a stable devtools name (existing pattern: `hero-section`, `logistics-section`, `timeline-section`, `gifts-section`, `carousel-section`). Reusable components (`src/components/`) follow the same idea with a plain kebab name (`bank-details`, `copy-icon`, `site-section`, `section-header`).
+- `defineProps`/`withDefaults` are **compiler macros** — do **not** import them from `vue` in `<script setup>` (it causes a `TS2440` collision and breaks the build). They're globally available.
 - Components are imported with PascalCase names and used as kebab-case tags in templates (e.g. import `Hero`, use `<hero />`). Match the surrounding style.
 - Prefer Composition API primitives (`ref`, `computed`, `onMounted`/`onUnmounted`). Clean up side effects (timers, listeners) in `onUnmounted` — see `Hero.vue`'s countdown timer.
 - The `@` alias maps to `src/` (configured in both `vite.config.ts` and `tsconfig.app.json`). Use it for cross-directory imports; relative imports are fine within a directory.
@@ -85,10 +95,10 @@ Before opening a PR, run `npm run lint:check` and `npm run format:check` — the
 ### Styling
 - Tailwind v4, configured **in CSS** via `@theme` in `src/index.css` — there is no JS Tailwind config file. Add design tokens there.
 - Custom theme tokens already defined (use these, don't hardcode hex):
-  - Colors: `mustard-yellow` (#d99b16), `powder-blue` (#81c5e4), `cream-background` (#fdfbf7) → usable as `text-powder-blue`, `bg-cream-background`, etc.
+  - Colors: `mustard-yellow` (#efa919), `powder-blue` (#81c5e4), `cream-background` (#fdfbf7) → usable as `text-powder-blue`, `bg-cream-background`, etc.
   - Fonts: `font-display` (Playfair Display, serif), `font-body` (Lato/Montserrat).
 - Decorative script fonts use utility classes from `index.css`: `.allison-regular` (loaded via Google Fonts in `index.html`) and `.bacalisties-regular` (local `@font-face`).
-- Prefer Tailwind utility classes in templates over `<style>` blocks. Use scoped `<style>` only for things Tailwind can't express cleanly (keyframes/animations — see `Carousel.vue`'s marquee).
+- Prefer Tailwind utility classes in templates over `<style>` blocks. Use scoped `<style>` only for things Tailwind can't express cleanly (3D transforms/keyframes — see `Gifts.vue`'s flip-card, or `Carousel.vue`'s scrollbar hiding).
 
 ## Testing
 
@@ -113,6 +123,8 @@ To ship: merge to `main`, then publish a GitHub Release (a draft does **not** tr
 
 - **`docs/` is generated and gitignored** — it's the encrypted StatiCrypt output produced by CI. Never commit it or hand-edit it. It's also excluded from linting.
 - **`dist/` is build output** — gitignored, don't commit.
+- **Images are pre-optimized WebP**, committed as static assets in `public/assets/img/`. Conversion is a **manual** `cwebp` step (resize + encode), **not** part of the Vite build — re-run it when adding photos and reference `.webp` paths. The full-res originals are kept locally in `image-originals/` (gitignored, not deployed). Add `loading="lazy"`/`decoding="async"` on below-the-fold `<img>`s.
+- **The Gifts section's IBAN data comes from `VITE_*` env vars** (`VITE_GIFT_IBAN`, `VITE_GIFT_IBAN_HOLDER`, `VITE_GIFT_IBAN_BANK`, plus the `VITE_TRAVEL_*` trio). `.env.example` documents them; `.env.local` holds local values (gitignored); CI injects them as repo **secrets** in `deploy.yml`. They're baked into the bundle at build time — `VITE_`-prefixed vars are public once shipped.
 - The real, only entry point is `src/main.ts`.
 - The lint scripts come in two flavors: `lint`/`format` mutate files (`--fix`/`--write`); `lint:check`/`format:check` only report. CI uses the `:check` ones — keep them green.
 

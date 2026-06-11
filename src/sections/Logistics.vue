@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
+import SiteSection from '@/components/Layout/SiteSection.vue'
 
 defineComponent({
   name: 'logistics-section',
@@ -7,15 +8,11 @@ defineComponent({
 </script>
 
 <template>
-  <section
-    class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-12 bg-cream-background"
+  <site-section
+    heading="Qualche informazione"
+    subHeading="Siamo entusiasti di condividere con voi il giorno più bello della nostra vita"
   >
-    <h2 class="allison-regular text-4xl md:text-6xl text-center mb-2">Location</h2>
-    <p class="font-body text-center text-base md:text-lg leading-relaxed mb-8 max-w-xl">
-      Siamo entusiasti di condividere con voi il giorno più bello della nostra vita
-    </p>
-
-    <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
+    <template #content>
       <div class="relative md:w-80 lg:w-96 shrink-0 md:min-h-0 md:mr-5">
         <img
           src="/assets/img/wall_2.webp"
@@ -28,26 +25,31 @@ defineComponent({
 
       <div class="flex-1 flex flex-col">
         <div class="p-6 flex flex-col gap-3">
-          <p class="allison-regular text-2xl md:text-3xl">Ristorante Le Querce</p>
-          <p class="font-body text-sm leading-relaxed text-gray-600">
-            Il grande giorno si terrà interamente presso il ristorante <em>Le Querce</em> di Ponzano
-            Veneto, che ci accoglierà col suo parco. Vi aspettiamo!
+          <p class="bacalisties-regular text-powder-blue text-4xl">14 novembre 2026</p>
+          <p>
+            Ecco quando sarà il grande giorno! Salvatelo sul telefono, scrivetelo sul calendario,
+            tatuatelo... Insomma: <b>NON SCORDATELO</b>!
+          </p>
+          <p>
+            La grande giornata si terrà interamente presso il ristorante
+            <span class="bacalisties-regular text-powder-blue text-2xl">Le Querce</span>, che ci
+            accoglierà col suo parco e la sua bellissima struttura.
+          </p>
+          <p>
+            Là ci saranno <b>Duska</b>, <b>Ermanno</b> e l'intero team del Ristorante ad occuparsi
+            di ogni minima cosa!
           </p>
 
-          <ul class="font-body text-sm text-gray-700 flex flex-col gap-2 mt-1">
+          <p>Qui trovate l'indirizzo del Ristorante:</p>
+
+          <ul class="flex flex-col gap-2">
             <li class="flex items-start gap-2">
               <span>📍</span>
               <span>Via Talponera 130/A, Ponzano Veneto (TV)</span>
             </li>
-            <li class="flex items-start gap-2">
-              <span>🌳</span>
-              <span>Ristorante con parco e giardino</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span>🚗</span>
-              <span>Parcheggio disponibile in loco</span>
-            </li>
           </ul>
+
+          <p>...Oppure cliccate sulla mappa sottostante per aprire Google Maps più comodamente</p>
         </div>
 
         <div class="flex-1 min-h-75 md:min-h-85">
@@ -60,6 +62,6 @@ defineComponent({
           ></iframe>
         </div>
       </div>
-    </div>
-  </section>
+    </template>
+  </site-section>
 </template>

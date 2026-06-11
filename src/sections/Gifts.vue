@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue'
+import SiteSection from '@/components/Layout/SiteSection.vue'
 import BankDetails from '@/components/BankDetails.vue'
 
 defineComponent({
@@ -54,13 +55,11 @@ const giftItems = reactive<GiftItem[]>([
 </script>
 
 <template>
-  <section
-    class="min-h-screen w-full flex flex-col items-center justify-center p-6 md:p-12 bg-cream-background"
-  >
-    <h2 class="allison-regular text-4xl md:text-6xl text-center mb-2">Lista Nozze</h2>
-
-    <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
-      <div class="relative md:w-80 lg:w-96 shrink-0 md:mr-5 flex flex-col gap-3 mt-4">
+  <site-section heading="Lista Nozze">
+    <template #content>
+      <div
+        class="order-2 md:order-1 relative md:w-80 lg:w-96 shrink-0 md:mr-5 flex flex-col gap-3 mt-4"
+      >
         <img
           src="/assets/img/wall_4.webp"
           alt="La coppia"
@@ -84,25 +83,25 @@ const giftItems = reactive<GiftItem[]>([
         />
       </div>
 
-      <div class="flex-1 flex flex-col">
+      <div class="order-1 md:order-2 flex-1 flex flex-col">
         <div class="p-3 flex flex-col gap-3 text-center">
-          <p class="allison-regular text-3xl md:text-4xl">
-            La vostra presenza è il regalo più grande che possiate farci!
+          <p class="allison-regular text-powder-blue text-3xl md:text-4xl">
+            La vostra presenza è già il regalo più grande che possiate farci!
           </p>
         </div>
 
         <div class="flex flex-col items-center gap-3 px-4 py-3">
-          <p class="font-body text-sm leading-relaxed text-gray-600 text-center max-w-lg">
+          <p>
             Tuttavia, se avrete piacere di farci un dono, c'è la possibilità di aiutarci a prendere
             il volo (letteralmente) per girare il mondo, partecipando alla spesa per il nostro
-            viaggio di nozze in Egitto.
+            viaggio di nozze in Egitto ✈️
           </p>
-          <p class="font-body text-sm leading-relaxed text-gray-600 text-center max-w-lg">
+          <p>
             Alternativamente, con la vostra generosità, sappiate che
             <s>
               non abbiamo affatto in programma di comprare le cose presenti nella lista qui sotto
             </s>
-            &nbsp;😁
+            &nbsp; 😁
           </p>
 
           <div class="flex flex-col md:flex-row gap-3 w-full">
@@ -158,8 +157,8 @@ const giftItems = reactive<GiftItem[]>([
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </template>
+  </site-section>
 </template>
 
 <style scoped>
