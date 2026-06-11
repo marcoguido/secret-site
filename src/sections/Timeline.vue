@@ -91,8 +91,9 @@ const selected = ref<number | null>(null)
         >
           <span
             class="text-mustard-yellow text-[13px] md:text-base font-medium pt-[13px] md:pt-1.5"
-            >{{ event.time }}</span
-          >
+            >
+            {{ event.time }}
+          </span>
           <div
             class="relative flex justify-center pt-2.5 pr-3 before:content-[''] before:absolute before:top-2.5 before:-bottom-6 before:w-0.5 before:bg-[#d9d9d9]"
             :class="{ 'before:hidden': i === events.length - 1 }"
