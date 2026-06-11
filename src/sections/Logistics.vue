@@ -9,7 +9,7 @@ defineComponent({
 
 <template>
   <site-section
-    heading="Location"
+    heading="Qualche informazione"
     subHeading="Siamo entusiasti di condividere con voi il giorno più bello della nostra vita"
   >
     <template #content>
@@ -25,28 +25,31 @@ defineComponent({
 
       <div class="flex-1 flex flex-col">
         <div class="p-6 flex flex-col gap-3">
-          <p class="font-body text-gray-600">
-            Il grande giorno sarà il <b>14 novembre 2026</b> e si terrà interamente presso il
-            ristorante
-            <span class="bacalisties-regular text-powder-blue text-2xl inline-block align-middle"
-              >Le Querce</span
-            >, che ci accoglierà col suo parco e la sua bellissima struttura. Là ci saranno
-            <b>Duska</b>, <b>Ermanno</b> e l'intero team del Ristorante ad occuparsi di ogni minima
-            cosa!
+          <p class="bacalisties-regular text-powder-blue text-4xl">14 novembre 2026</p>
+          <p>
+            Ecco quando sarà il grande giorno! Salvatelo sul telefono, scrivetelo sul calendario,
+            tatuatevelo... Insomma: <b>NON SCORDATELO</b>!
+          </p>
+          <p>
+            La grande giornata si terrà interamente presso il ristorante
+            <span class="bacalisties-regular text-powder-blue text-2xl">Le Querce</span>, che ci
+            accoglierà col suo parco e la sua bellissima struttura.
+          </p>
+          <p>
+            Là ci saranno <b>Duska</b>, <b>Ermanno</b> e l'intero team del Ristorante ad occuparsi
+            di ogni minima cosa!
           </p>
 
-          <p class="text-gray-600">Qui trovate l'indirizzo del Ristorante:</p>
+          <p>Qui trovate l'indirizzo del Ristorante:</p>
 
-          <ul class="font-body text-sm text-gray-700 flex flex-col gap-2 mt-1">
+          <ul class="flex flex-col gap-2">
             <li class="flex items-start gap-2">
               <span>📍</span>
               <span>Via Talponera 130/A, Ponzano Veneto (TV)</span>
             </li>
           </ul>
 
-          <p class="text-gray-600">
-            ...Oppure cliccate sulla mappa sottostante per aprire Google Maps più comodamente
-          </p>
+          <p>...Oppure cliccate sulla mappa sottostante per aprire Google Maps più comodamente</p>
         </div>
 
         <div class="flex-1 min-h-75 md:min-h-85">
