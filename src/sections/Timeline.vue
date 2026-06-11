@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref, defineComponent } from 'vue'
+import SectionHeader from '@/components/SectionHeader.vue'
+import SectionSubHeader from '@/components/SectionSubHeader.vue'
 import {
   IconGlass,
   IconCamera,
@@ -38,37 +40,37 @@ const events = [
     time: '13:00',
     icon: IconGlass,
     title: '🥂 Aperitivo',
-    desc: 'Si aprono le danze: Prosecco, tartine e musica vi aspettano in terrazza e veranda per iniziare i festeggiamenti',
+    desc: 'Si aprono le danze: Prosecco, tartine e musica vi aspettano tra terrazza e veranda per iniziare i festeggiamenti',
   },
   {
     time: '14:00',
     icon: IconToolsKitchen2,
     title: '🍴 Pranzo nuziale',
-    desc: 'Menu a base di prodotti stagionali con pairing di vini selezionati.',
+    desc: 'Il menu è una sorpresa: per ora vi basti sapere che Ermanno è uno Chef con la C maiuscola e saprà stupire i palati di ognuno, promesso!',
   },
   {
     time: '18:30',
     icon: IconChefHat,
-    title: '🥂 Buffet serale',
-    desc: 'Arrivo nuovi ospiti. Lancio del bouquet.',
+    title: '🧑‍🍳 Buffet serale',
+    desc: 'Arrivo degli ospiti della sera. Si prosegue con un buffet e, soprattutto, con il lancio del bouquet 💐',
   },
   {
     time: '19:30',
     icon: IconCake,
     title: '🍰 Taglio della torta',
-    desc: 'Taglio e servizio torta. Si mangerà la torta preferita degli sposi.',
+    desc: 'Taglio e servizio torta nuziale: nessuno spoiler sulla torta, vi basti sapere che è la preferita degli sposi',
   },
   {
     time: '21:15',
     icon: IconMusic,
-    title: '💃🕺 Party party party',
-    desc: 'DJ set e pista da ballo aperta. First dance della coppia, poi tutti in pista fino alle 23:00.',
+    title: '💃 FESTA 🕺',
+    desc: 'Si aprono le danze (letteralmente): DJ set e pista da ballo saranno a disposizione, per il divertimento di tutti!',
   },
   {
-    time: '23:30',
+    time: '00:00',
     icon: IconMoonStars,
-    title: '😴 Buonanotte',
-    desc: 'Grazie e buon rientro.',
+    title: '😴 Buonanotte, grazie a tutti',
+    desc: 'Come ogni cosa bella, ci sarà -ahinoi- anche la fine di questa memorabile giornata',
   },
 ]
 
@@ -77,23 +79,25 @@ const selected = ref<number | null>(0)
 
 <template>
   <section
-    class="min-h-screen w-full flex flex-col items-center justify-start md:justify-center p-6 md:p-12 snap-start bg-powder-blue"
+    class="min-h-screen w-full flex flex-col items-center justify-start md:justify-center p-6 md:p-12 snap-start bg-cream-background"
   >
-    <h2 class="allison-regular text-4xl md:text-6xl text-center mb-6 text-mustard-yellow">
-      Timeline
-    </h2>
+    <div class="w-full max-w-6xl">
+      <section-header content="Timeline" />
+
+      <section-sub-header
+        content="A voi una piccola anticipazione dei momenti salienti della giornata"
+      />
+    </div>
 
     <div class="w-full max-w-6xl overflow-hidden flex flex-col md:flex-row">
       <div class="flex-1 flex flex-col pr-4">
         <div
           v-for="(event, i) in events"
           :key="i"
-          class="grid grid-cols-[72px_42px_1fr] relative pb-[14px] cursor-pointer"
+          class="grid grid-cols-[72px_42px_1fr] relative pb-3.5 cursor-pointer"
           @click="selected = selected === i ? null : i"
         >
-          <span
-            class="text-cream-background text-[13px] md:text-base font-medium pt-[13px] md:pt-1.5"
-          >
+          <span class="text-powder-blue text-[13px] md:text-base font-medium pt-3.25 md:pt-3">
             {{ event.time }}
           </span>
           <div
@@ -101,12 +105,12 @@ const selected = ref<number | null>(0)
             :class="{ 'before:hidden': i === events.length - 1 }"
           >
             <div
-              class="w-7 h-7 rounded-full bg-white border border-[#d6d6d6] flex items-center justify-center z-2 text-powder-blue"
+              class="w-7 h-7 rounded-full bg-white border border-[#d6d6d6] flex items-center justify-center z-2 text-[#a0aec4f5]"
             >
               <component :is="event.icon" :size="16" />
             </div>
           </div>
-          <div class="border border-[#ececec] rounded-2xl py-[14px] px-[18px] bg-white">
+          <div class="border border-[#ececec] rounded-2xl py-3.5 px-4.5 bg-white">
             <div class="flex items-center justify-between gap-2.5">
               <strong class="text-[13px] md:text-base text-powder-blue font-bold">{{
                 event.title
