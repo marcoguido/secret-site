@@ -20,55 +20,55 @@ const events = [
   {
     time: '11:00',
     icon: IconGlass,
-    title: '🎉 Benvenuti a tutti',
+    title: 'Benvenuti a tutti',
     desc: "Aspetteremo l'inizio della celebrazione nel parco del ristorante, sorseggiando un gradevole analcolico",
   },
   {
     time: '11:30',
     icon: IconCirclesRelation,
-    title: '💍 Rito Civile',
+    title: 'Rito Civile',
     desc: 'Ci scambieremo i voti nel parco del ristorante e poi saremo ufficialmente Marito e Moglie: preparate i fazzoletti',
   },
   {
     time: '12:00',
     icon: IconCamera,
-    title: '📸 Servizio fotografico',
+    title: 'Servizio fotografico',
     desc: 'Passeggiata nei giardini per le foto di coppia, ma anche per quelle con famiglie ed amici',
   },
   {
     time: '13:00',
     icon: IconGlass,
-    title: '🥂 Aperitivo',
+    title: 'Aperitivo',
     desc: 'Si aprono le danze: Prosecco, tartine e musica vi aspettano tra terrazza e veranda per iniziare i festeggiamenti',
   },
   {
     time: '14:00',
     icon: IconToolsKitchen2,
-    title: '🍴 Pranzo nuziale',
+    title: 'Pranzo nuziale',
     desc: 'Il menu è una sorpresa: per ora vi basti sapere che Ermanno è uno Chef con la C maiuscola e saprà stupire i palati di ognuno, promesso!',
   },
   {
     time: '18:30',
     icon: IconChefHat,
-    title: '🧑‍🍳 Buffet serale',
+    title: 'Buffet serale',
     desc: 'Arrivo degli ospiti della sera. Si prosegue con un buffet e, soprattutto, con il lancio del bouquet 💐',
   },
   {
     time: '19:30',
     icon: IconCake,
-    title: '🍰 Taglio della torta',
+    title: 'Taglio della torta',
     desc: 'Taglio e servizio torta nuziale: nessuno spoiler sulla torta, vi basti sapere che è la preferita degli sposi',
   },
   {
     time: '21:15',
     icon: IconMusic,
-    title: '💃 FESTA 🕺',
+    title: 'FESTA',
     desc: 'Si aprono le danze (letteralmente): DJ set e pista da ballo saranno a disposizione, per il divertimento di tutti!',
   },
   {
     time: '00:00',
     icon: IconMoonStars,
-    title: '😴 Buonanotte, grazie a tutti',
+    title: 'Buonanotte, grazie a tutti',
     desc: 'Come ogni cosa bella, ci sarà -ahinoi- anche la fine di questa memorabile giornata',
   },
 ]
@@ -91,7 +91,7 @@ const selected = ref<number | null>(0)
           @click="selected = selected === i ? null : i"
         >
           <span
-            class="hidden md:block text-powder-blue text-[13px] md:text-base font-medium pt-3.25 md:pt-3"
+            class="hidden md:block text-mustard-yellow text-[13px] md:text-base font-medium pt-3.25 md:pt-3"
           >
             {{ event.time }}
           </span>
@@ -107,8 +107,11 @@ const selected = ref<number | null>(0)
           </div>
           <div class="border border-[#ececec] rounded-2xl py-3.5 px-4.5 bg-white">
             <div class="flex items-center justify-between gap-2.5">
-              <strong class="text-[13px] md:text-base text-powder-blue font-bold">
-                <span class="md:hidden font-medium">{{ `Ore ${event.time}` }} • </span>
+              <strong class="text-base text-powder-blue font-bold">
+                <span class="md:hidden font-medium text-mustard-yellow">
+                  {{ `Ore ${event.time}` }}
+                </span>
+                <span class="md:hidden font-medium"> • </span>
                 {{ event.title }}
               </strong>
             </div>

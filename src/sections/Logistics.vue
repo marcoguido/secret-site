@@ -28,7 +28,7 @@ defineComponent({
           <p class="bacalisties-regular text-powder-blue text-4xl">14 novembre 2026</p>
           <p>
             Ecco quando sarà il grande giorno! Salvatelo sul telefono, scrivetelo sul calendario,
-            tatuatevelo... Insomma: <b>NON SCORDATELO</b>!
+            tatuatelo... Insomma: <b>NON SCORDATELO</b>!
           </p>
           <p>
             La grande giornata si terrà interamente presso il ristorante
