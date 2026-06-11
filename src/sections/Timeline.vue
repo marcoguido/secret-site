@@ -103,11 +103,13 @@ const selected = ref<number | null>(null)
         </div>
       </div>
 
-      <div class="relative md:w-90 lg:w-100 flex-shrink-0 min-h-72 md:min-h-0 md:ml-3">
+      <div class="relative md:w-90 lg:w-100 shrink-0 min-h-72 md:min-h-0 md:ml-3">
         <img
-          src="/assets/img/wall_4.jpg"
+          src="/assets/img/wall_4.webp"
           alt="La coppia"
           class="w-full h-full object-cover object-top rounded-2xl max-h-144"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
         />
       </div>
     </div>
