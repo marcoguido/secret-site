@@ -65,7 +65,7 @@ const giftItems = reactive<GiftItem[]>([
           alt="La coppia"
           loading="lazy"
           decoding="async"
-          class="w-full object-cover object-top rounded-2xl sm:h-60"
+          class="w-full object-cover object-top rounded-2xl sm:h-60 hidden md:inline-block"
         />
         <img
           src="/assets/img/pelose.webp"
