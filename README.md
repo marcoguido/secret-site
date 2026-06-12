@@ -46,16 +46,17 @@ Pull requests run the same build + encrypt as a smoke test but never deploy.
 
 ### Required GitHub repo configuration
 
-| Kind | Name | Value |
-| --- | --- | --- |
-| Variable (`vars`) | `STATICRYPT_SALT` | 32-char lowercase hex string — the StatiCrypt salt. Public by design; safe as a Variable. |
-| Secret (`secrets`) | `STATICRYPT_PASSWORD` | The password visitors must enter to unlock the site. |
+| Kind | Name | Value                                                                                             |
+| --- | --- |---------------------------------------------------------------------------------------------------|
+| Variable (`vars`) | `STATICRYPT_SALT` | 32-char lowercase hex string — the StatiCrypt salt. Public by design; safe as a Variable.         |
+| Secret (`secrets`) | `STATICRYPT_PASSWORD` | The password visitors must enter to unlock the site.                                              |
 | Secret (`secrets`) | `VITE_TRAVEL_IBAN` | IBAN shown on the honeymoon card in the Lista Nozze section. Baked into the bundle at build time. |
-| Secret (`secrets`) | `VITE_TRAVEL_IBAN_HOLDER` | Account holder name shown on the honeymoon card. Baked into the bundle at build time. |
-| Secret (`secrets`) | `VITE_TRAVEL_IBAN_BANK` | Bank name shown on the honeymoon card. Baked into the bundle at build time. |
+| Secret (`secrets`) | `VITE_TRAVEL_IBAN_HOLDER` | Account holder name shown on the honeymoon card. Baked into the bundle at build time.             |
+| Secret (`secrets`) | `VITE_TRAVEL_IBAN_BANK` | Bank name shown on the honeymoon card. Baked into the bundle at build time.                       |
 | Secret (`secrets`) | `VITE_GIFT_IBAN` | IBAN shown on the gift-list card in the Lista Nozze section. Baked into the bundle at build time. |
-| Secret (`secrets`) | `VITE_GIFT_IBAN_HOLDER` | Account holder name shown on the gift-list card. Baked into the bundle at build time. |
-| Secret (`secrets`) | `VITE_GIFT_IBAN_BANK` | Bank name shown on the gift-list card. Baked into the bundle at build time. |
+| Secret (`secrets`) | `VITE_GIFT_IBAN_HOLDER` | Account holder name shown on the gift-list card. Baked into the bundle at build time.             |
+| Secret (`secrets`) | `VITE_GIFT_IBAN_BANK` | Bank name shown on the gift-list card. Baked into the bundle at build time.                       |
+| Secret (`secrets`) | `VITE_GOOGLE_FORM_URL` | The url to the Google Form which will gather attendee data.                                       |
 
 Pages source: **Settings → Pages → Build and deployment → Source → GitHub Actions**.
 
