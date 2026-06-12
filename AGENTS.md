@@ -37,6 +37,7 @@ src/
     Logistics.vue       # Venue info + embedded Google Map
     Timeline.vue        # Wedding-day schedule — accordion of events (Tabler icons)
     Gifts.vue           # "Lista Nozze" — flip-card gift list + IBAN bank details
+    Rsvp.vue            # RSVP form — posts to a Google Form (no-cors fetch) for attendance/companions/allergies
     Carousel.vue        # Interactive auto-scrolling photo marquee (drag/scroll + autoplay)
   components/
     BankDetails.vue     # IBAN card (iban/holder/bank) with per-line copy buttons
@@ -55,7 +56,7 @@ public/
   lint.yml              # Lint + format check (on PR) — intended as a required status check
 ```
 
-The page is a single vertical stack: `App.vue` renders `<hero>`, `<logistics>`, `<timeline>`, `<gifts>`, `<carousel>` in order. Most sections wrap their body in `<site-section>` (`src/components/Layout/`), which provides the full-height shell, heading, and `#content` slot. To add a section, create `src/sections/<Name>.vue` (typically using `<site-section>`) and import + place it in `App.vue`.
+The page is a single vertical stack: `App.vue` renders `<hero>`, `<logistics>`, `<timeline>`, `<gifts>`, `<rsvp>`, `<carousel>` in order. Most sections wrap their body in `<site-section>` (`src/components/Layout/`), which provides the full-height shell, heading, and `#content` slot. To add a section, create `src/sections/<Name>.vue` (typically using `<site-section>`) and import + place it in `App.vue`.
 
 ## Commands
 
@@ -125,6 +126,7 @@ To ship: merge to `main`, then publish a GitHub Release (a draft does **not** tr
 - **`dist/` is build output** — gitignored, don't commit.
 - **Images are pre-optimized WebP**, committed as static assets in `public/assets/img/`. Conversion is a **manual** `cwebp` step (resize + encode), **not** part of the Vite build — re-run it when adding photos and reference `.webp` paths. The full-res originals are kept locally in `image-originals/` (gitignored, not deployed). Add `loading="lazy"`/`decoding="async"` on below-the-fold `<img>`s.
 - **The Gifts section's IBAN data comes from `VITE_*` env vars** (`VITE_GIFT_IBAN`, `VITE_GIFT_IBAN_HOLDER`, `VITE_GIFT_IBAN_BANK`, plus the `VITE_TRAVEL_*` trio). `.env.example` documents them; `.env.local` holds local values (gitignored); CI injects them as repo **secrets** in `deploy.yml`. They're baked into the bundle at build time — `VITE_`-prefixed vars are public once shipped.
+- **The RSVP section posts to a Google Form** via `VITE_GOOGLE_FORM_URL` (the form's `viewform`/share URL — the section normalizes it to the `formResponse` endpoint). Submission is a `mode: 'no-cors'` `fetch`, so the response is opaque: a resolved fetch is treated as success, a thrown network error as failure. The Google Form field IDs (`entry.*` for name/attendance/companions/allergies) and the attendance radio option strings are hardcoded in `Rsvp.vue` and **must match the live form exactly** — update both together if the form changes.
 - The real, only entry point is `src/main.ts`.
 - The lint scripts come in two flavors: `lint`/`format` mutate files (`--fix`/`--write`); `lint:check`/`format:check` only report. CI uses the `:check` ones — keep them green.
 

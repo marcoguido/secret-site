@@ -33,6 +33,7 @@ jobs:
           VITE_GIFT_IBAN: ${{ secrets.VITE_GIFT_IBAN }}
           VITE_GIFT_IBAN_HOLDER: ${{ secrets.VITE_GIFT_IBAN_HOLDER }}
           VITE_GIFT_IBAN_BANK: ${{ secrets.VITE_GIFT_IBAN_BANK }}
+          VITE_GOOGLE_FORM_URL: ${{ secrets.VITE_GOOGLE_FORM_URL }}
         run: npm run build
 
       - name: Encrypt with StatiCrypt

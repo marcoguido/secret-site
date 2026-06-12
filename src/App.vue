@@ -4,6 +4,7 @@ import Logistics from '@/sections/Logistics.vue'
 import Timeline from '@/sections/Timeline.vue'
 import Carousel from '@/sections/Carousel.vue'
 import Gifts from '@/sections/Gifts.vue'
+import Rsvp from '@/sections/Rsvp.vue'
 </script>
 
 <template>
@@ -15,6 +16,8 @@ import Gifts from '@/sections/Gifts.vue'
     <timeline />
 
     <gifts />
+
+    <rsvp />
 
     <carousel />
   </div>
