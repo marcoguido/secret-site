@@ -7,7 +7,7 @@ defineComponent({
 
 const carouselImages = computed(() => {
   const images = []
-  for (let i = 0; i < 19; i++) {
+  for (let i = 0; i < 18; i++) {
     images.push({
       id: `img-${i}`,
       path: `/assets/img/carousel_${i + 1}.webp`,
@@ -19,7 +19,7 @@ const carouselImages = computed(() => {
 })
 
 // Auto-scroll: one full copy of the list scrolls past every SECONDS_PER_LOOP.
-const SECONDS_PER_LOOP = 35
+const SECONDS_PER_LOOP = 60
 const RESUME_DELAY_MS = 1500
 
 const track = ref<HTMLElement | null>(null)
