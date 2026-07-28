@@ -48,7 +48,7 @@ src/
 public/
   CNAME                 # Custom-domain marker (carlyeguido.love); copied through dist/ → docs/
   assets/
-    img/                # carousel_1..19.webp, wall_1..6.webp, pelose.webp, egypt.webp
+    img/                # carousel_1..19.webp, wall_1..6.webp, fluffy.webp, egypt.webp
     font/Bacalisties.ttf
     favicon/            # favicons + site.webmanifest
 .github/workflows/

@@ -68,7 +68,7 @@ const giftItems = reactive<GiftItem[]>([
           class="w-full object-cover object-top rounded-2xl sm:h-60 hidden md:inline-block"
         />
         <img
-          src="/assets/img/pelose.webp"
+          src="/assets/img/fluffy.webp"
           alt="Le nostre gattine"
           loading="lazy"
           decoding="async"
