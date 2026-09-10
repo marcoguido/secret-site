@@ -6,6 +6,10 @@ defineComponent({
   name: 'rsvp-section',
 })
 
+defineProps<{
+  rsvpDeadlineDate: Date
+}>()
+
 // Google Form field IDs (the form this section proxies to).
 const ENTRY_NAME = 'entry.289262896'
 const ENTRY_ATTENDANCE = 'entry.877086558'
@@ -58,7 +62,7 @@ const onSubmit = async (): Promise<void> => {
 <template>
   <site-section
     heading="Ci sarai per l'evento dell'anno?"
-    sub-heading="Aiutaci a organizzare al meglio la giornata"
+    :sub-heading="`Aiutaci a organizzare al meglio la giornata entro il ${rsvpDeadlineDate.toLocaleDateString()} 🙏`"
     headingAlignment="center"
   >
     <template #content>
