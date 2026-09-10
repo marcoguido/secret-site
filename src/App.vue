@@ -24,10 +24,7 @@ const rsvpDeadlineDate = new Date('2026-10-25T23:59:59')
 
     <gifts />
 
-    <rsvp
-      v-if="now.getTime() <= rsvpDeadlineDate.getTime()"
-      :rsvp-deadline-date
-    />
+    <rsvp v-if="now.getTime() <= rsvpDeadlineDate.getTime()" :rsvp-deadline-date />
 
     <carousel />
   </div>
