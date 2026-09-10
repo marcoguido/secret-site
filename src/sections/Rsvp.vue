@@ -62,7 +62,7 @@ const onSubmit = async (): Promise<void> => {
 <template>
   <site-section
     heading="Ci sarai per l'evento dell'anno?"
-    :sub-heading="`Aiutaci a organizzare al meglio la giornata entro il ${rsvpDeadlineDate.toLocaleDateString()} 🙏`"
+    :sub-heading="`Aiutaci a organizzare al meglio la giornata confermando la tua presenza entro il ${rsvpDeadlineDate.toLocaleDateString()} 🙏`"
     headingAlignment="center"
   >
     <template #content>
