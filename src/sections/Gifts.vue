@@ -27,9 +27,6 @@ const toggleFlip = (item: GiftItem): void => {
   item.flipped = !item.flipped
 }
 
-const travelIban = import.meta.env.VITE_TRAVEL_IBAN
-const travelIbanHolder = import.meta.env.VITE_TRAVEL_IBAN_HOLDER
-const travelIbanBank = import.meta.env.VITE_TRAVEL_IBAN_BANK
 const giftIban = import.meta.env.VITE_GIFT_IBAN
 const giftIbanHolder = import.meta.env.VITE_GIFT_IBAN_HOLDER
 const giftIbanBank = import.meta.env.VITE_GIFT_IBAN_BANK
@@ -106,14 +103,7 @@ const giftItems = reactive<GiftItem[]>([
 
           <div class="flex flex-col md:flex-row gap-3 w-full">
             <bank-details
-              v-if="false"
               title="✈️ Viaggio di nozze ✈️"
-              :iban="travelIban"
-              :holder="travelIbanHolder"
-              :bank="travelIbanBank"
-            />
-            <bank-details
-              title="🎁 Lista regali 🎁"
               :iban="giftIban"
               :holder="giftIbanHolder"
               :bank="giftIbanBank"
