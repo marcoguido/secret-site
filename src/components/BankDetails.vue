@@ -14,22 +14,47 @@ const props = defineProps<{
 }>()
 
 const rows = computed(() => [
-  { value: props.iban, label: 'Copia IBAN', textClass: 'font-display text-lg select-all' },
-  { value: props.holder, label: 'Copia intestatario', textClass: 'font-body text-sm' },
   {
+    display: `IBAN: ${props.iban}`,
+    value: props.iban,
+    copy: true,
+    label: 'Copia IBAN',
+    subject: 'IBAN',
+    textClass: 'font-display text-lg select-all',
+  },
+  {
+    display: `Intestatari: ${props.holder}`,
+    value: props.holder,
+    copy: true,
+    label: 'Copia intestatario',
+    subject: 'Intestatario',
+    textClass: 'font-body text-lg select-all',
+  },
+  {
+    display: 'Causale: Viaggio di nozze Carlotta e Marco',
+    value: 'Viaggio di nozze Carlotta e Marco',
+    copy: true,
+    label: 'Copia causale',
+    subject: 'Causale',
+    textClass: 'font-body text-lg select-all',
+  },
+  {
+    display: `Banca: ${props.bank}`,
     value: `Banca: ${props.bank}`,
+    copy: false,
     label: 'Copia banca',
-    textClass: 'font-body text-sm opacity-80',
+    subject: 'Nome della banca',
+    textClass: 'font-body text-lg select-all',
   },
 ])
 
-const copyText = async (value: string): Promise<void> => {
+const copyText = async (subject: string, value: string): Promise<void> => {
   try {
     await navigator.clipboard.writeText(value)
-    alert('Copiato negli appunti!')
+    alert(`È possibile incollare ${subject} dagli appunti`)
   } catch (err) {
     console.error('Failed to copy: ', err)
-    alert('Errore durante la copia.')
+    alert(`Errore durante la copia di ${subject}, trascrivilo manualmente.`)
   }
 }
 </script>
@@ -43,9 +68,10 @@ const copyText = async (value: string): Promise<void> => {
       class="flex items-center justify-center gap-2"
       :class="index < rows.length - 1 ? 'mb-1' : ''"
     >
-      <p :class="row.textClass">{{ row.value }}</p>
+      <p :class="row.textClass">{{ row.display }}</p>
       <button
-        @click="copyText(row.value)"
+        v-if="row.copy"
+        @click="copyText(row.subject, row.value)"
         :aria-label="row.label"
         :title="row.label"
         class="shrink-0 p-1 rounded-full hover:bg-cream-background/20 cursor-pointer transition-colors duration-200 focus:outline-none"
