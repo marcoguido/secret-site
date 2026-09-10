@@ -38,6 +38,43 @@ npm run build
 npm run lint
 ```
 
+### Check with [Prettier](https://prettier.io/)
+
+```sh
+npm run format
+```
+
+## Image optimization
+
+Images are optimized **by hand**, not by the Vite build. Convert every new photo to WebP before you commit it.
+
+- **CLI program:** `cwebp`, from the [libwebp](https://developers.google.com/speed/webp/docs/cwebp) package.
+- **Install (macOS):** `brew install webp`
+- **Full-resolution originals:** keep them in `image-originals/` (gitignored, never deployed).
+- **Deployed assets:** write the `.webp` output to `public/assets/img/`.
+
+### Carousel photos
+
+Every carousel photo is **240x320** (3:4 portrait), quality **80**, encode method **6**. Crop the source to an exact 3:4 ratio first, otherwise `-resize` stretches it.
+
+```sh
+# 3:4 source — resize only
+cwebp -resize 240 320 -q 80 -m 6 \
+  image-originals/<name>.jpg -o public/assets/img/carousel_<n>.webp
+
+# non-3:4 source — center-crop to 3:4, then resize.
+# Example: carousel_20.png is 981x1292. A 3:4 crop is 969 wide, so the
+# horizontal offset is (981 - 969) / 2 = 6.
+cwebp -crop 6 0 969 1292 -resize 240 320 -q 80 -m 6 \
+  image-originals/carousel_20.png -o public/assets/img/carousel_19.webp
+```
+
+`cwebp` applies `-crop` **before** `-resize`, so give the crop box in source pixels.
+
+Read the source dimensions with `sips -g pixelWidth -g pixelHeight <file>` (macOS). Check the result with `webpinfo <file>.webp`.
+
+The carousel numbers its files sequentially. `src/sections/Carousel.vue` builds the paths in a loop, so the output name must continue the `carousel_1.webp` … `carousel_N.webp` run with no gap. Increase the loop bound when you add a photo.
+
 ## Deployment
 
 The site is published by GitHub Actions: every **published Release** triggers [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml), which builds the site with Vite, encrypts the output with [StatiCrypt](https://github.com/robinmoisson/staticrypt), and deploys it to GitHub Pages via the `actions/deploy-pages` artifact flow.
@@ -50,9 +87,6 @@ Pull requests run the same build + encrypt as a smoke test but never deploy.
 | --- | --- |---------------------------------------------------------------------------------------------------|
 | Variable (`vars`) | `STATICRYPT_SALT` | 32-char lowercase hex string — the StatiCrypt salt. Public by design; safe as a Variable.         |
 | Secret (`secrets`) | `STATICRYPT_PASSWORD` | The password visitors must enter to unlock the site.                                              |
-| Secret (`secrets`) | `VITE_TRAVEL_IBAN` | IBAN shown on the honeymoon card in the Lista Nozze section. Baked into the bundle at build time. |
-| Secret (`secrets`) | `VITE_TRAVEL_IBAN_HOLDER` | Account holder name shown on the honeymoon card. Baked into the bundle at build time.             |
-| Secret (`secrets`) | `VITE_TRAVEL_IBAN_BANK` | Bank name shown on the honeymoon card. Baked into the bundle at build time.                       |
 | Secret (`secrets`) | `VITE_GIFT_IBAN` | IBAN shown on the gift-list card in the Lista Nozze section. Baked into the bundle at build time. |
 | Secret (`secrets`) | `VITE_GIFT_IBAN_HOLDER` | Account holder name shown on the gift-list card. Baked into the bundle at build time.             |
 | Secret (`secrets`) | `VITE_GIFT_IBAN_BANK` | Bank name shown on the gift-list card. Baked into the bundle at build time.                       |
@@ -95,6 +129,15 @@ rm -rf dist docs \
 ```
 
 Open `http://127.0.0.1:4173/` — the StatiCrypt password gate should appear.
+
+### Staticrypt url regeneration
+
+After building the site with `npm run build`, and having build the static artifact with the command described in the 
+previous paragraph, run the following command to get the URL with the login bypass:
+
+```bash
+staticrypt -r dist/* -d docs -s $STATICRYPT_SALT --share https://your-website.xyz
+```
 
 ### Files
 

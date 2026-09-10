@@ -7,7 +7,7 @@ defineComponent({
 
 const carouselImages = computed(() => {
   const images = []
-  for (let i = 0; i < 18; i++) {
+  for (let i = 0; i < 19; i++) {
     images.push({
       id: `img-${i}`,
       path: `/assets/img/carousel_${i + 1}.webp`,
