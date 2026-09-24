@@ -16,7 +16,8 @@
     "lint:check:oxlint": "oxlint .",
     "lint:check:eslint": "eslint .",
     "format": "prettier --write --experimental-cli src/",
-    "format:check": "prettier --check --experimental-cli src/"
+    "format:check": "prettier --check --experimental-cli src/",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tabler/icons-vue": "^3.44.0",
@@ -37,6 +38,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-oxlint": "~1.60.0",
     "eslint-plugin-vue": "~10.8.0",
+    "husky": "^9.1.7",
     "jiti": "^2.6.1",
     "npm-run-all2": "^8.0.4",
     "oxlint": "~1.60.0",
