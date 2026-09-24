@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Carlotta e Marco//Matrimonio//IT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:matrimonio-carlotta-marco-20261114@carlyeguido.love
+DTSTAMP:20260924T000000Z
+DTSTART:20261114T100000Z
+DTEND:20261114T230000Z
+SUMMARY:Matrimonio di Carlotta e Marco
+LOCATION:Ristorante Le Querce\, Via Talponera 130/A\, Ponzano Veneto (TV)
+GEO:45.7217892;12.1691038
+DESCRIPTION:Vi aspettiamo per il nostro matrimonio! Tutte le informazioni
+  su https://carlyeguido.love
+URL:https://carlyeguido.love
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P7D
+DESCRIPTION:Tra una settimana il matrimonio di Carlotta e Marco!
+END:VALARM
+END:VEVENT
+END:VCALENDAR

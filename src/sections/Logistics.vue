@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineComponent } from 'vue'
 import SiteSection from '@/components/Layout/SiteSection.vue'
+import { IconCalendarPlus } from '@tabler/icons-vue'
 
 defineComponent({
   name: 'logistics-section',
@@ -27,8 +28,20 @@ defineComponent({
         <div class="p-6 flex flex-col gap-3">
           <p class="bacalisties-regular text-powder-blue text-4xl">14 novembre 2026</p>
           <p>
-            Ecco quando sarà il grande giorno! Salvatelo sul telefono, scrivetelo sul calendario,
-            tatuatelo... Insomma: <b>NON SCORDATELO</b>!
+            Ecco quando sarà il grande giorno! Memorizzalo, tatuatelo o, più semplicemente,
+            aggiungilo al calendario cliccando sul pulsante qui sotto... La cosa importante
+            è: <b>NON SCORDATELO</b>!
+          </p>
+          <p>
+            <a
+              href="/assets/matrimonio-carlotta-e-marco.ics"
+              download="matrimonio-carlotta-e-marco.ics"
+              type="text/calendar"
+              class="self-start inline-flex items-center gap-2 rounded-full border hover:border-powder-blue border-mustard-yellow px-4 py-2 font-medium text-mustard-yellow transition-colors hover:bg-powder-blue hover:text-white"
+            >
+              <icon-calendar-plus :size="20" />
+              <span>Aggiungilo al calendario!</span>
+            </a>
           </p>
           <p>
             La grande giornata si terrà interamente presso il ristorante
