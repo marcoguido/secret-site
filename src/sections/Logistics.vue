@@ -29,8 +29,8 @@ defineComponent({
           <p class="bacalisties-regular text-powder-blue text-4xl">14 novembre 2026</p>
           <p>
             Ecco quando sarà il grande giorno! Memorizzalo, tatuatelo o, più semplicemente,
-            aggiungilo al calendario cliccando sul pulsante qui sotto... La cosa importante
-            è: <b>NON SCORDATELO</b>!
+            aggiungilo al calendario cliccando sul pulsante qui sotto... La cosa importante è:
+            <b>NON SCORDATELO</b>!
           </p>
           <p>
             <a
