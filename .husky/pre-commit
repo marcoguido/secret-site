@@ -1,0 +1,4 @@
+npm run format
+
+# Re-stage the staged files that Prettier changed, so the commit contains the formatted version
+git diff --cached --name-only --diff-filter=ACMR -z -- src/ | xargs -0 git add --
