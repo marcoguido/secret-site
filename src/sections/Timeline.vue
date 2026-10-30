@@ -20,7 +20,7 @@ const events = [
   {
     time: '11:00',
     icon: IconGlass,
-    title: 'Benvenuti a tutti',
+    title: 'Benvenuti, tutti',
     desc: "Aspetteremo l'inizio della celebrazione nel parco del ristorante, sorseggiando un gradevole analcolico",
   },
   {
@@ -42,7 +42,7 @@ const events = [
     desc: 'Si aprono le danze: Prosecco, tartine e musica vi aspettano tra terrazza e veranda per iniziare i festeggiamenti',
   },
   {
-    time: '14:00',
+    time: '15:00',
     icon: IconToolsKitchen2,
     title: 'Pranzo nuziale',
     desc: 'Il menu è una sorpresa: per ora vi basti sapere che Ermanno è uno Chef con la C maiuscola e saprà stupire i palati di ognuno, promesso!',
